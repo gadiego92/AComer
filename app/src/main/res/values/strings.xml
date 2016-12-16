@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">AComer</string>
+    <string name="bIniciarSesion">Iniciar Sesión</string>
+    <string name="bRegistro">Registro</string>
+    <string name="nombreUsuario">Nombre usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="errorLogin">Usuario y/o contraseña incorrectos</string>
+
+    <string name="buscar">Buscar</string>
+    <string name="favoritos">Favoritos</string>
+    <string name="mi_cuenta">Mi Cuenta</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
