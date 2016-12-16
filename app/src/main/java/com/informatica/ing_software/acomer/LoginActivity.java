@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
-
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
     // url to get all products list
@@ -91,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
             params.add(new Pair<String, String>("password", args[1]));
             params.add(new Pair<String, String>("tipo_usuario", "C"));
 
-            int success = -1;
+            int success;
             usuario_email = args[0];
 
             // getting JSON string from URL
