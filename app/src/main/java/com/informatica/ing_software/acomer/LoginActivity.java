@@ -22,7 +22,7 @@ public class LoginActivity extends AppCompatActivity {
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
     // url to get all products list
-    private static String usuarios_login = "http://192.168.1.104/proyecto/usuarios_login.php";
+    private static String usuarios_login = "http://192.168.1.105/proyecto/usuarios_login.php";
     // Progress Dialog
     private ProgressDialog pDialog;
     // Creating JSON Parser object

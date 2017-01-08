@@ -5,7 +5,7 @@
     tools:context="com.informatica.ing_software.acomer.fragments.SearchFragment">
 
     <ListView
-        android:id="@android:id/list"
+        android:id="@+id/ListViewRestaurantes"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
