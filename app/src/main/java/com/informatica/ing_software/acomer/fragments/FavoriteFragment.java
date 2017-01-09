@@ -150,9 +150,11 @@ public class FavoriteFragment extends ListFragment {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         list.add(((JSONObject) jsonArray.get(i)).getString("nm"));
                     }
-
-                    return list;
+                } else {
+                    list.add("Lista de favoritos vacia");
                 }
+
+                return list;
             } catch (JSONException e) {
                 e.printStackTrace();
             }
