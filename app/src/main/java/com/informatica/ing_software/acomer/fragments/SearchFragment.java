@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.informatica.ing_software.acomer.R;
+import com.informatica.ing_software.acomer.Restaurante;
 import com.informatica.ing_software.acomer.adapters.ListSearchAdapter;
 import com.informatica.ing_software.acomer.json.JSONParser;
 
@@ -37,13 +38,11 @@ public class SearchFragment extends Fragment {
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_RESTAURANTS = "restaurantes";
     // URL to get favorites restaurants
-    private static String restaurantes_search = "http://192.168.1.105/proyecto/p1_restaurantes_search.php";
+    private static String restaurantes_search = "http://192.168.0.14/proyecto/p1_restaurantes_search.php";
     // Creating JSON Parser object
     private JSONParser jParser = new JSONParser();
     private String usuario_email;
     private OnFragmentInteractionListener mListener;
-
-    private ListView lv;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -56,7 +55,6 @@ public class SearchFragment extends Fragment {
      * @param email User's email.
      * @return A new instance of fragment SearchFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static SearchFragment newInstance(String email) {
         SearchFragment fragment = new SearchFragment();
         Bundle args = new Bundle();
@@ -83,7 +81,6 @@ public class SearchFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_search, container, false);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -118,29 +115,21 @@ public class SearchFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 
     /**
      * Background Async Task to load last 20 restaurants by making HTTP Request
      */
-    class GetRestaurants extends AsyncTask<String, Void, List<String[]>> {
+    class GetRestaurants extends AsyncTask<String, Void, List<Restaurante>> {
 
-        protected List<String[]> doInBackground(String... args) {
-            // Building Parameters
-            List<Pair<String, String>> params = null;
-
+        protected List<Restaurante> doInBackground(String... args) {
             // Getting JSON string from URL
-            JSONObject json = jParser.makeHttpRequest(restaurantes_search, params);
+            JSONObject json = jParser.makeHttpRequest(restaurantes_search, new ArrayList<Pair<String, String>>());
 
             int success = -1;
-            List<String[]> list = new ArrayList<String[]>();
+            List<Restaurante> lista_restaurantes = new ArrayList<Restaurante>();
 
-            String[] uno = new String[20];
-            String[] dos = new String[20];
-            String[] tres = new String[20];
-            String[] cuatro = new String[20];
             try {
                 // Checking for SUCCESS TAG
                 success = json.getInt(TAG_SUCCESS);
@@ -152,39 +141,33 @@ public class SearchFragment extends Fragment {
                     JSONArray jsonArray = new JSONArray(restaurantes);
 
                     for (int i = 0; i < jsonArray.length(); i++) {
-                        List<String> tmp = new ArrayList<String>();
-                        uno[i] = ((JSONObject) jsonArray.get(i)).getString("nm");   // Nombre
-                        dos[i] = ((JSONObject) jsonArray.get(i)).getString("cd");   // Ciudad
-                        tres[i] = ((JSONObject) jsonArray.get(i)).getString("cn");  // Cocina
-                        cuatro[i] = ((JSONObject) jsonArray.get(i)).getString("vl");// Valoracion
+                        String nm = ((JSONObject) jsonArray.get(i)).getString("nm");   // Nombre
+                        String cd = ((JSONObject) jsonArray.get(i)).getString("cd");    // Ciudad
+                        String cn = ((JSONObject) jsonArray.get(i)).getString("cn");    // Cocina
+                        String vl = ((JSONObject) jsonArray.get(i)).getString("vl");    // Valoracion
 
-                        list.add(uno);
-                        list.add(dos);
-                        list.add(tres);
-                        list.add(cuatro);
+                        lista_restaurantes.add(new Restaurante(nm, cd, cn, vl));
                     }
                 }
+
+                return lista_restaurantes;
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
-            if (success == 1)
-                return list;
-            else
-                return null;
+            return null;
         }
 
         /**
          * After completing background task Dismiss the progress dialog
          **/
-        protected void onPostExecute(List<String[]> result) {
-            // Populate the ListView with the received data
-            //setListAdapter(new ArrayAdapter<String>(getActivity(), R.layout.fragment_favorite_item, R.id.textViewFavorite, result));
-            ListSearchAdapter lsAdapter = new ListSearchAdapter(getActivity(), result.get(0), result.get(1), result.get(2), result.get(3));
+        protected void onPostExecute(List<Restaurante> result) {
+            // seleccionamos el listView
+            ListView lv = (ListView) getActivity().findViewById(R.id.ListViewRestaurantes);
 
-            // selecting single ListView item
-            lv = (ListView) getActivity().findViewById(R.id.ListViewRestaurantes);
-            lv.setAdapter(lsAdapter);
+            // cogemos los datos con el ListSearchAdapter y los mostramos
+            ListSearchAdapter customAdapter = new ListSearchAdapter(getActivity(), R.layout.fragment_search_item, result);
+            lv.setAdapter(customAdapter);
         }
     }
 }

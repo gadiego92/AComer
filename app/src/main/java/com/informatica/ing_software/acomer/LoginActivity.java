@@ -22,7 +22,7 @@ public class LoginActivity extends AppCompatActivity {
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
     // url to get all products list
-    private static String usuarios_login = "http://192.168.1.105/proyecto/usuarios_login.php";
+    private static String usuarios_login = "http://192.168.0.14/proyecto/p0_usuarios_login.php";
     // Progress Dialog
     private ProgressDialog pDialog;
     // Creating JSON Parser object
@@ -90,8 +90,9 @@ public class LoginActivity extends AppCompatActivity {
             params.add(new Pair<String, String>("password", args[1]));
             params.add(new Pair<String, String>("tipo_usuario", "C"));
 
-            int success;
+            int success = 0;
             usuario_email = args[0];
+
 
             // getting JSON string from URL
             JSONObject json = jParser.makeHttpRequest(usuarios_login, params);

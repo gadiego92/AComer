@@ -37,7 +37,7 @@ public class FavoriteFragment extends ListFragment {
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_RESTAURANTS = "restaurantes";
     // URL to get favorites restaurants
-    private static String usuarios_favoritos = "http://192.168.1.105/proyecto/p2_usuarios_favoritos.php";
+    private static String usuarios_favoritos = "http://192.168.0.14/proyecto/p2_usuarios_favoritos.php";
     // Creating JSON Parser object
     private JSONParser jParser = new JSONParser();
     private String usuario_email;
@@ -150,15 +150,14 @@ public class FavoriteFragment extends ListFragment {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         list.add(((JSONObject) jsonArray.get(i)).getString("nm"));
                     }
+
+                    return list;
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
-            if (success == 1)
-                return list;
-            else
-                return null;
+            return null;
         }
 
         /**
