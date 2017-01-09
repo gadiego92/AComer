@@ -2,15 +2,26 @@ package com.informatica.ing_software.acomer.fragments;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.ListFragment;
+import android.support.v4.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.informatica.ing_software.acomer.R;
+import com.informatica.ing_software.acomer.Restaurante;
+import com.informatica.ing_software.acomer.adapters.ListSearchAdapter;
+import com.informatica.ing_software.acomer.json.JSONParser;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,21 +31,18 @@ import com.informatica.ing_software.acomer.R;
  * Use the {@link SearchFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SearchFragment extends ListFragment {
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+public class SearchFragment extends Fragment {
+    // The fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String USUARIO_EMAIL = "usuario_email";
-    private static final String[] busquedas = {
-            "Bucar por cercanía (GPS)",
-            "Buscar por restaurante",
-            "Buscar por dirección",
-            "Buscar por ciudad",
-            "Buscar por tipo de cocina",
-            "Buscar mejor valorados",
-            "Buscar últimos añadidos"
-    };
-    private OnFragmentInteractionListener mListener;
+    // JSON Node names
+    private static final String TAG_SUCCESS = "success";
+    private static final String TAG_RESTAURANTS = "restaurantes";
+    // URL to get favorites restaurants
+    private static String restaurantes_search = "http://192.168.0.14/proyecto/p1_restaurantes_search.php";
+    // Creating JSON Parser object
+    private JSONParser jParser = new JSONParser();
     private String usuario_email;
-
+    private OnFragmentInteractionListener mListener;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -47,7 +55,6 @@ public class SearchFragment extends ListFragment {
      * @param email User's email.
      * @return A new instance of fragment SearchFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static SearchFragment newInstance(String email) {
         SearchFragment fragment = new SearchFragment();
         Bundle args = new Bundle();
@@ -61,9 +68,10 @@ public class SearchFragment extends ListFragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             usuario_email = getArguments().getString(USUARIO_EMAIL);
-        }
 
-        setListAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, busquedas));
+            // Get favorite Restaurants
+            new GetRestaurants().execute();
+        }
     }
 
     @Override
@@ -73,7 +81,6 @@ public class SearchFragment extends ListFragment {
         return inflater.inflate(R.layout.fragment_search, container, false);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -108,7 +115,59 @@ public class SearchFragment extends ListFragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    /**
+     * Background Async Task to load last 20 restaurants by making HTTP Request
+     */
+    class GetRestaurants extends AsyncTask<String, Void, List<Restaurante>> {
+
+        protected List<Restaurante> doInBackground(String... args) {
+            // Getting JSON string from URL
+            JSONObject json = jParser.makeHttpRequest(restaurantes_search, new ArrayList<Pair<String, String>>());
+
+            int success = -1;
+            List<Restaurante> lista_restaurantes = new ArrayList<Restaurante>();
+
+            try {
+                // Checking for SUCCESS TAG
+                success = json.getInt(TAG_SUCCESS);
+
+                if (success == 1) {
+                    // Get Restaurant Array
+                    String restaurantes = json.getString(TAG_RESTAURANTS);
+                    // Converto to JSONArray
+                    JSONArray jsonArray = new JSONArray(restaurantes);
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        String nm = ((JSONObject) jsonArray.get(i)).getString("nm");   // Nombre
+                        String cd = ((JSONObject) jsonArray.get(i)).getString("cd");    // Ciudad
+                        String cn = ((JSONObject) jsonArray.get(i)).getString("cn");    // Cocina
+                        String vl = ((JSONObject) jsonArray.get(i)).getString("vl");    // Valoracion
+
+                        lista_restaurantes.add(new Restaurante(nm, cd, cn, vl));
+                    }
+                }
+
+                return lista_restaurantes;
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        /**
+         * After completing background task Dismiss the progress dialog
+         **/
+        protected void onPostExecute(List<Restaurante> result) {
+            // seleccionamos el listView
+            ListView lv = (ListView) getActivity().findViewById(R.id.ListViewRestaurantes);
+
+            // cogemos los datos con el ListSearchAdapter y los mostramos
+            ListSearchAdapter customAdapter = new ListSearchAdapter(getActivity(), R.layout.fragment_search_item, result);
+            lv.setAdapter(customAdapter);
+        }
     }
 }

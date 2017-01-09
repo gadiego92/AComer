@@ -31,17 +31,17 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class FavoriteFragment extends ListFragment {
+    // The fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String USUARIO_EMAIL = "usuario_email";
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_RESTAURANTS = "restaurantes";
-    // The fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String USUARIO_EMAIL = "usuario_email";
     // URL to get favorites restaurants
-    private static String usuarios_favoritos = "http://192.168.1.104/proyecto/usuarios_favoritos.php";
-    private OnFragmentInteractionListener mListener;
+    private static String usuarios_favoritos = "http://192.168.0.14/proyecto/p2_usuarios_favoritos.php";
     // Creating JSON Parser object
     private JSONParser jParser = new JSONParser();
     private String usuario_email;
+    private OnFragmentInteractionListener mListener;
 
     public FavoriteFragment() {
         // Required empty public constructor
@@ -124,10 +124,8 @@ public class FavoriteFragment extends ListFragment {
     /**
      * Background Async Task to load all favorite restaurants by making HTTP Request
      */
-    class GetFavoritos extends AsyncTask<String, String, List<String>> {
-        /**
-         * getting All products from url
-         */
+    class GetFavoritos extends AsyncTask<String, Void, List<String>> {
+
         protected List<String> doInBackground(String... args) {
             // Building Parameters
             List<Pair<String, String>> params = new ArrayList<Pair<String, String>>();
@@ -152,15 +150,16 @@ public class FavoriteFragment extends ListFragment {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         list.add(((JSONObject) jsonArray.get(i)).getString("nm"));
                     }
+                } else {
+                    list.add("Lista de favoritos vacia");
                 }
+
+                return list;
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
-            if (success == 1)
-                return list;
-            else
-                return null;
+            return null;
         }
 
         /**
