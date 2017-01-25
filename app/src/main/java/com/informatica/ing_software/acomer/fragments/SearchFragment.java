@@ -38,7 +38,7 @@ public class SearchFragment extends Fragment {
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_RESTAURANTS = "restaurantes";
     // URL to get favorites restaurants
-    private static String restaurantes_search = "http://192.168.0.14/proyecto/p1_restaurantes_search.php";
+    private static String RESTAURANTES_SEARCH = "http://192.168.0.14/proyecto/p1_restaurantes_search.php";
     // Creating JSON Parser object
     private JSONParser jParser = new JSONParser();
     private String usuario_email;
@@ -125,7 +125,7 @@ public class SearchFragment extends Fragment {
 
         protected List<Restaurante> doInBackground(String... args) {
             // Getting JSON string from URL
-            JSONObject json = jParser.makeHttpRequest(restaurantes_search, new ArrayList<Pair<String, String>>());
+            JSONObject json = jParser.makeHttpRequest(RESTAURANTES_SEARCH, new ArrayList<Pair<String, String>>());
 
             int success = -1;
             List<Restaurante> lista_restaurantes = new ArrayList<Restaurante>();

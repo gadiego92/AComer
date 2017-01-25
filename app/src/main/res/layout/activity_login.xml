@@ -24,8 +24,6 @@
             android:id="@+id/imageViewLogo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/textViewUsername"
-            android:layout_centerInParent="true"
             app:srcCompat="@android:drawable/ic_notification_overlay" />
 
     </LinearLayout>
@@ -42,16 +40,13 @@
             android:id="@+id/textViewUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="@string/nombreUsuario"
+            android:text="@string/logNombreUsuario"
             android:textSize="18sp" />
 
         <EditText
             android:id="@+id/editTextUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textViewUsername"
-            android:layout_centerInParent="true"
             android:ems="10"
             android:inputType="textEmailAddress" />
 
@@ -59,17 +54,13 @@
             android:id="@+id/textViewPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/editTextUsername"
-            android:layout_centerInParent="true"
-            android:text="@string/password"
+            android:text="@string/logPassword"
             android:textSize="18sp" />
 
         <EditText
             android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textViewPassword"
-            android:layout_centerInParent="true"
             android:ems="10"
             android:inputType="textPassword" />
 
@@ -77,10 +68,8 @@
             android:id="@+id/textViewErrorLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/editTextUsername"
-            android:layout_centerInParent="true"
             android:gravity="center"
-            android:text="@string/errorLogin"
+            android:text="@string/logErrorLogin"
             android:textColor="@color/colorRojo"
             android:textSize="14sp"
             android:visibility="invisible" />
@@ -89,19 +78,15 @@
             android:id="@+id/buttonIniciarSesion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/editTextPassword"
-            android:layout_centerInParent="true"
             android:onClick="loguearse"
-            android:text="@string/bIniciarSesion" />
+            android:text="@string/logIniciarSesion" />
 
         <Button
             android:id="@+id/buttonRegistro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/buttonIniciarSesion"
-            android:layout_centerInParent="true"
             android:onClick="registrarse"
-            android:text="@string/bRegistro" />
+            android:text="@string/logRegistro" />
 
     </LinearLayout>
 
