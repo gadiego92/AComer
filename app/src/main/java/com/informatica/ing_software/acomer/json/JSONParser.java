@@ -7,10 +7,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.List;
 
@@ -52,15 +54,18 @@ public class JSONParser {
             //data += "&" + URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(select, "UTF-8");
             URL url = new URL(link);
 
-            URLConnection conn = url.openConnection();
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setDoInput(true);
             conn.setDoOutput(true);
 
-            OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+            OutputStream out = conn.getOutputStream();
+            OutputStreamWriter wr = new OutputStreamWriter(out);
             wr.write(data);
             wr.flush();
+            wr.close();
 
-            InputStreamReader isr = new InputStreamReader(conn.getInputStream());
+            InputStream in = conn.getInputStream();
+            InputStreamReader isr = new InputStreamReader(in);
             BufferedReader reader = new BufferedReader(isr);
             StringBuilder sb = new StringBuilder();
             String line = "";
@@ -70,7 +75,8 @@ public class JSONParser {
                 //break;
             }
 
-            //is.close();
+            reader.close();
+            conn.disconnect();
             json = sb.toString();
         } catch (Exception e) {
             Log.e("Buffer Error", "Server Error " + e.toString());

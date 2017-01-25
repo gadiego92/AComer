@@ -10,4 +10,192 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.informatica.ing_software.acomer.RegisterActivity">
 
+    <TextView
+        android:id="@+id/registroTitulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="@string/regTitulo"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+    <Button
+        android:id="@+id/registroButtonRegistro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:onClick="registrarse"
+        android:text="@string/regRegistro" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/registroButtonRegistro"
+        android:layout_below="@id/registroTitulo">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="25dp">
+
+            <TextView
+                android:id="@+id/registroTextViewEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/regEmail" />
+
+            <EditText
+                android:id="@+id/registroEditTextEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textEmailAddress"
+                android:text="987" />
+
+            <TextView
+                android:id="@+id/registroTextViewPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/regPassword" />
+
+            <EditText
+                android:id="@+id/registroEditTextPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:text="987" />
+
+            <TextView
+                android:id="@+id/registroTextViewPassword2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/regPassword2" />
+
+            <EditText
+                android:id="@+id/registroEditTextPassword2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:text="987" />
+
+            <TextView
+                android:id="@+id/registroTextViewNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/regNombre" />
+
+            <EditText
+                android:id="@+id/registroEditTextNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Diego" />
+
+            <TextView
+                android:id="@+id/registroTextViewApellido"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/regApellido" />
+
+            <EditText
+                android:id="@+id/registroEditTextApellido"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="González" />
+
+            <TextView
+                android:id="@+id/registroTextViewFechaNacimimiento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/regFechaNacimiento" />
+
+            <EditText
+                android:id="@+id/registroEditTextFechaNacimiento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="date"
+                android:text="1992-03-22" />
+
+            <TextView
+                android:id="@+id/registroTextViewTelefono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/regTelefono" />
+
+            <EditText
+                android:id="@+id/registroEditTextTelefono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="phone"
+                android:text="987512821" />
+
+            <TextView
+                android:id="@+id/registroTextViewCiudad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/regCiudad" />
+
+            <EditText
+                android:id="@+id/registroEditTextCiudad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Bembibre" />
+
+            <TextView
+                android:id="@+id/registroTextViewProvincia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/regProvincia" />
+
+            <EditText
+                android:id="@+id/registroEditTextProvincia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="León" />
+
+            <TextView
+                android:id="@+id/registroTextViewPais"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/regPais" />
+
+            <EditText
+                android:id="@+id/registroEditTextPais"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="España" />
+
+            <TextView
+                android:id="@+id/registroTextViewCodigoPostal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/regCodigoPostal" />
+
+            <EditText
+                android:id="@+id/registroEditTextCodigoPostal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:text="24300" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
 </RelativeLayout>

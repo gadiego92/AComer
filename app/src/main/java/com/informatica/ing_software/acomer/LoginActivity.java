@@ -21,9 +21,10 @@ import java.util.List;
 public class LoginActivity extends AppCompatActivity {
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
-    // url to get all products list
-    private static String usuarios_login = "http://192.168.0.14/proyecto/p0_usuarios_login.php";
-    // Progress Dialog
+    // url to login
+    //private static String USUARIOS_LOGIN = "http://amaterasu.unileon.es/benten/acomer/p0_usuarios_login.php";
+    private static String USUARIOS_LOGIN = "http://192.168.0.14/proyecto/p0_usuarios_login.php";
+    // Progress Login Dialog
     private ProgressDialog pDialog;
     // Creating JSON Parser object
     private JSONParser jParser = new JSONParser();
@@ -34,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
     }
 
-    // Procedemos con el login al pulsar le boton iniciar sesion
+    // Procedemos con el login al pulsar el boton "Iniciar sesion"
     public void loguearse(View view) {
         EditText eUsuario, ePassword;
         eUsuario = (EditText) findViewById(R.id.editTextUsername);
@@ -81,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         /**
-         * getting All products from url
+         * trying login
          */
         protected String doInBackground(String... args) {
             // Building Parameters
@@ -91,11 +92,11 @@ public class LoginActivity extends AppCompatActivity {
             params.add(new Pair<String, String>("tipo_usuario", "C"));
 
             int success = 0;
+            // Guardamos el email para pasarlo a las siguientes activities
             usuario_email = args[0];
 
-
             // getting JSON string from URL
-            JSONObject json = jParser.makeHttpRequest(usuarios_login, params);
+            JSONObject json = jParser.makeHttpRequest(USUARIOS_LOGIN, params);
 
             try {
                 // Checking for SUCCESS TAG
@@ -117,11 +118,12 @@ public class LoginActivity extends AppCompatActivity {
             pDialog.dismiss();
 
             if (result.equals("1")) {
-                // navigate to Main Menu
-                Intent i = new Intent(LoginActivity.this, MainActivity.class);
-                i.putExtra("usuario_email", usuario_email);
-                startActivity(i);
+                // navigate to MainActivity
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.putExtra("usuario_email", usuario_email);
+                startActivity(intent);
             } else {
+                // Login incorrecto
                 TextView textViewErrorLogin = (TextView) findViewById(R.id.textViewErrorLogin);
                 textViewErrorLogin.setVisibility(TextView.VISIBLE);
             }

@@ -6,19 +6,19 @@
         android:id="@+id/accion_buscar"
         android:enabled="true"
         android:icon="@drawable/ic_search_white_24dp"
-        android:title="@string/buscar"
+        android:title="@string/mainMenuBuscar"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/accion_favoritos"
         android:enabled="true"
         android:icon="@drawable/ic_favorite_white_24dp"
-        android:title="@string/favoritos"
+        android:title="@string/mainMenuFavoritos"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/accion_mi_cuenta"
         android:enabled="true"
         android:icon="@drawable/ic_person_white_24dp"
-        android:title="@string/mi_cuenta"
+        android:title="@string/mainMenuMiCuenta"
         app:showAsAction="ifRoom" />
 
 </menu>
