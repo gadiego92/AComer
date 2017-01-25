@@ -20,10 +20,10 @@ import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
     // JSON Node names
-    private static final String TAG_SUCCESS = "success";
+    private final String TAG_SUCCESS = "success";
     // url to login
     //private static String USUARIOS_LOGIN = "http://amaterasu.unileon.es/benten/acomer/p0_usuarios_login.php";
-    private static String USUARIOS_LOGIN = "http://192.168.0.14/proyecto/p0_usuarios_login.php";
+    private String USUARIOS_LOGIN = "http://192.168.0.14/proyecto/p0_usuarios_login.php";
     // Progress Login Dialog
     private ProgressDialog pDialog;
     // Creating JSON Parser object

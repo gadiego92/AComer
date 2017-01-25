@@ -34,10 +34,10 @@ public class FavoriteFragment extends ListFragment {
     // The fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String USUARIO_EMAIL = "usuario_email";
     // JSON Node names
-    private static final String TAG_SUCCESS = "success";
-    private static final String TAG_RESTAURANTS = "restaurantes";
+    private final String TAG_SUCCESS = "success";
+    private final String TAG_RESTAURANTS = "restaurantes";
     // URL to get favorites restaurants
-    private static String USUARIOS_FAVORITOS = "http://192.168.0.14/proyecto/p2_usuarios_favoritos.php";
+    private final String USUARIOS_FAVORITOS = "http://192.168.0.14/proyecto/p2_usuarios_favoritos.php";
     // Creating JSON Parser object
     private JSONParser jParser = new JSONParser();
     private String usuario_email;
