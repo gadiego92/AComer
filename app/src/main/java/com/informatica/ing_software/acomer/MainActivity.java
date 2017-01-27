@@ -8,9 +8,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.informatica.ing_software.acomer.fragments.FavoriteFragment;
+import com.informatica.ing_software.acomer.fragments.MyAccountFragment;
 import com.informatica.ing_software.acomer.fragments.SearchFragment;
 
-public class MainActivity extends AppCompatActivity implements SearchFragment.OnFragmentInteractionListener, FavoriteFragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements SearchFragment.OnFragmentInteractionListener,
+        FavoriteFragment.OnFragmentInteractionListener, MyAccountFragment.OnFragmentInteractionListener {
 
     Bundle bundle;
 
@@ -70,6 +72,16 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.On
                                 break;
                             case R.id.accion_mi_cuenta:
                                 //textView.setText("Mi Cuenta");
+
+                                // Creamos una instancia de SearchFragment
+                                MyAccountFragment miAccountFragment = new MyAccountFragment();
+
+                                // Pasamos los extras del Intent al fragmento como argumentos
+                                miAccountFragment.setArguments(getIntent().getExtras());
+
+                                // Añadimos el fragmento al FrameLayout 'fragment_container'
+                                getSupportFragmentManager().beginTransaction()
+                                        .replace(R.id.fragment_container, miAccountFragment).commit();
                                 break;
                         }
 

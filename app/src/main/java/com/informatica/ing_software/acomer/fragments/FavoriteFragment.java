@@ -54,7 +54,6 @@ public class FavoriteFragment extends ListFragment {
      * @param email User's email.
      * @return A new instance of fragment FavoriteFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static FavoriteFragment newInstance(String email) {
         FavoriteFragment fragment = new FavoriteFragment();
         Bundle args = new Bundle();
@@ -82,7 +81,6 @@ public class FavoriteFragment extends ListFragment {
         return inflater.inflate(R.layout.fragment_favorite, container, false);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -117,7 +115,6 @@ public class FavoriteFragment extends ListFragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 

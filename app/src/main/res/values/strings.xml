@@ -34,6 +34,11 @@
     <string name="resButtonProductos">Oferta</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="miNombre">Nombre</string>
+    <string name="miApellido">Apellido</string>
+    <string name="miTelefono">Telefono</string>
+    <string name="miEmail">Email</string>
+    <string name="miButtonEditarDatos">Editar perfil</string>
+    <string name="miButtonCerrarSesion">Cerrar sesión</string>
 
 </resources>
