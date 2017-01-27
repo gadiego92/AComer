@@ -92,6 +92,7 @@
                 android:text="@string/logRegistro" />
 
         </LinearLayout>
+
     </ScrollView>
 
 </LinearLayout>
