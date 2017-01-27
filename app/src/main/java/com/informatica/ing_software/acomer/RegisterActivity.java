@@ -23,7 +23,7 @@ public class RegisterActivity extends AppCompatActivity {
     private final String TAG_SUCCESS = "success";
     // url to register
     // private static String USUARIOS_REGISTRO = "http://amaterasu.unileon.es/benten/acomer/p0_usuarios_registro.php";
-    private final String USUARIOS_REGISTRO = "http://192.168.0.14/proyecto/p0_usuarios_registro.php";
+    private final String USUARIOS_REGISTRO = "http://192.168.0.14/proyecto/aComerAndroid/p0_usuarios_registro.php";
     // Tipo de Usuario para el registro (C - Cliente)
     private final String TIPO_USUARIO_CLIENTE = "C";
     // Progress Register Dialog

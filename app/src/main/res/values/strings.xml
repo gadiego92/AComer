@@ -28,5 +28,12 @@
     <string name="regCodigoPostal">Codigo Postal</string>
     <string name="regRegistro">Registrarse</string>
 
+    <!-- RestaurantLayout -->
+    <string name="resContacto">Contacto:</string>
+    <string name="resButtonOpiniones">Opiniones</string>
+    <string name="resButtonProductos">Oferta</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

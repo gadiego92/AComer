@@ -37,7 +37,7 @@ public class FavoriteFragment extends ListFragment {
     private final String TAG_SUCCESS = "success";
     private final String TAG_RESTAURANTS = "restaurantes";
     // URL to get favorites restaurants
-    private final String USUARIOS_FAVORITOS = "http://192.168.0.14/proyecto/p2_usuarios_favoritos.php";
+    private final String USUARIOS_FAVORITOS = "http://192.168.0.14/proyecto/aComerAndroid/p2_usuarios_favoritos.php";
     // Creating JSON Parser object
     private JSONParser jParser = new JSONParser();
     private String usuario_email;
