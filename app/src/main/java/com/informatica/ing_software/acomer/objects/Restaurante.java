@@ -1,4 +1,4 @@
-package com.informatica.ing_software.acomer;
+package com.informatica.ing_software.acomer.objects;
 
 /**
  * Created by Diego on 09/01/2017.

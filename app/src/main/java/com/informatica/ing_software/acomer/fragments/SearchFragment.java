@@ -15,9 +15,9 @@ import android.widget.ListView;
 
 import com.informatica.ing_software.acomer.R;
 import com.informatica.ing_software.acomer.RestaurantActivity;
-import com.informatica.ing_software.acomer.Restaurante;
 import com.informatica.ing_software.acomer.adapters.ListSearchAdapter;
 import com.informatica.ing_software.acomer.json.JSONParser;
+import com.informatica.ing_software.acomer.objects.Restaurante;
 
 import org.json.JSONArray;
 import org.json.JSONException;

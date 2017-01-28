@@ -9,9 +9,10 @@
     <string name="logErrorLogin">Usuario y/o contraseña incorrectos</string>
 
     <!-- MainLayout Menu -->
-    <string name="mainMenuBuscar">Buscar</string>
-    <string name="mainMenuFavoritos">Favoritos</string>
-    <string name="mainMenuMiCuenta">Mi Cuenta</string>
+    <string name="mainMenuBuscar">Search</string>
+    <string name="mainMenuFavoritos">Favs</string>
+    <string name="mainMenuMiCuenta">Profile</string>
+    <string name="mainMenuAyuda">Help</string>
 
     <!-- RegisterLayout -->
     <string name="regTitulo">Registro</string>
@@ -40,5 +41,6 @@
     <string name="miEmail">Email</string>
     <string name="miButtonEditarDatos">Editar perfil</string>
     <string name="miButtonCerrarSesion">Cerrar sesión</string>
+
 
 </resources>

@@ -8,11 +8,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.informatica.ing_software.acomer.fragments.FavoriteFragment;
+import com.informatica.ing_software.acomer.fragments.HelpFragment;
 import com.informatica.ing_software.acomer.fragments.MyAccountFragment;
 import com.informatica.ing_software.acomer.fragments.SearchFragment;
 
 public class MainActivity extends AppCompatActivity implements SearchFragment.OnFragmentInteractionListener,
-        FavoriteFragment.OnFragmentInteractionListener, MyAccountFragment.OnFragmentInteractionListener {
+        FavoriteFragment.OnFragmentInteractionListener, MyAccountFragment.OnFragmentInteractionListener, HelpFragment.OnFragmentInteractionListener {
 
     Bundle bundle;
 
@@ -83,6 +84,20 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.On
                                 getSupportFragmentManager().beginTransaction()
                                         .replace(R.id.fragment_container, miAccountFragment).commit();
                                 break;
+                            case R.id.accion_ayuda:
+                                //textView.setText("Mi Cuenta");
+
+                                // Creamos una instancia de SearchFragment
+                                HelpFragment helpFragment = new HelpFragment();
+
+                                // Pasamos los extras del Intent al fragmento como argumentos
+                                helpFragment.setArguments(getIntent().getExtras());
+
+                                // Añadimos el fragmento al FrameLayout 'fragment_container'
+                                getSupportFragmentManager().beginTransaction()
+                                        .replace(R.id.fragment_container, helpFragment).commit();
+                                break;
+
                         }
 
                         return false;

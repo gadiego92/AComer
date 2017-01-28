@@ -20,5 +20,10 @@
         android:icon="@drawable/ic_person_white_24dp"
         android:title="@string/mainMenuMiCuenta"
         app:showAsAction="ifRoom" />
-
+    <item
+        android:id="@+id/accion_ayuda"
+        android:enabled="true"
+        android:icon="@drawable/ic_help_outline_black_24dp"
+        android:title="@string/mainMenuAyuda"
+        app:showAsAction="ifRoom" />
 </menu>

@@ -51,8 +51,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textEmailAddress"
-                android:text="987" />
+                android:inputType="textEmailAddress" />
 
             <TextView
                 android:id="@+id/registroTextViewPassword"
@@ -65,8 +64,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPassword"
-                android:text="987" />
+                android:inputType="textPassword" />
 
             <TextView
                 android:id="@+id/registroTextViewPassword2"
@@ -79,8 +77,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPassword"
-                android:text="987" />
+                android:inputType="textPassword" />
 
             <TextView
                 android:id="@+id/registroTextViewNombre"
@@ -93,8 +90,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Diego" />
+                android:inputType="textPersonName" />
 
             <TextView
                 android:id="@+id/registroTextViewApellido"
@@ -107,8 +103,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="González" />
+                android:inputType="textPersonName" />
 
             <TextView
                 android:id="@+id/registroTextViewFechaNacimimiento"
@@ -121,8 +116,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="date"
-                android:text="1992-03-22" />
+                android:inputType="date" />
 
             <TextView
                 android:id="@+id/registroTextViewTelefono"
@@ -135,8 +129,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="phone"
-                android:text="987512821" />
+                android:inputType="phone" />
 
             <TextView
                 android:id="@+id/registroTextViewCiudad"
@@ -149,8 +142,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Bembibre" />
+                android:inputType="textPersonName" />
 
             <TextView
                 android:id="@+id/registroTextViewProvincia"
@@ -163,8 +155,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="León" />
+                android:inputType="textPersonName" />
 
             <TextView
                 android:id="@+id/registroTextViewPais"
@@ -177,8 +168,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="España" />
+                android:inputType="textPersonName" />
 
             <TextView
                 android:id="@+id/registroTextViewCodigoPostal"
@@ -191,8 +181,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="number"
-                android:text="24300" />
+                android:inputType="number" />
 
         </LinearLayout>
 

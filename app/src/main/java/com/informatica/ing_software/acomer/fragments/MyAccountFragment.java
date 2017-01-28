@@ -12,8 +12,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.informatica.ing_software.acomer.R;
-import com.informatica.ing_software.acomer.Usuario;
 import com.informatica.ing_software.acomer.json.JSONParser;
+import com.informatica.ing_software.acomer.objects.Usuario;
 
 import org.json.JSONArray;
 import org.json.JSONException;

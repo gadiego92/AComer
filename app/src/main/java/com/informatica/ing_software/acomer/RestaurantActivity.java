@@ -36,6 +36,6 @@ public class RestaurantActivity extends AppCompatActivity {
         RatingBar valoracionRatingBar = (RatingBar) findViewById(R.id.ratingBarRestaurante);
         //valoracionRatingBar.setMax(3);
         //valoracionRatingBar.setNumStars(3);
-        valoracionRatingBar.setRating(Float.parseFloat(valoracion) % 3);
+        valoracionRatingBar.setRating(Float.parseFloat(valoracion));
     }
 }
