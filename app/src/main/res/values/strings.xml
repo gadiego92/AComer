@@ -43,11 +43,11 @@
     <string name="miButtonCerrarSesion">Cerrar sesión</string>
 
     <!-- Favourite deletion -->
-    <string name="dialogTitle"></string>
-    <string name="ok">Ok</string>
-    <string name="cancel">Cancel</string>
+    <string name="dialogTitle">Eliminar favorito</string>
+    <string name="ok">Aceptar</string>
+    <string name="cancel">Cancelar</string>
 
     <!-- -URL Server -->
-    <string name="urlServer">http://10.130.58.135/proyecto/aComerAndroid/</string>
+    <string name="urlServer">http://192.168.0.14/proyecto/aComerAndroid/</string>
 
 </resources>

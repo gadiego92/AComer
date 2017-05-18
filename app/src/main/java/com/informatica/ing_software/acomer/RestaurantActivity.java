@@ -18,17 +18,9 @@ public class RestaurantActivity extends AppCompatActivity {
 
         Intent searchIntent = getIntent();
         id = getIntent().getIntExtra("restaurante_id", 0);
-        /*
-        nombre = getIntent().getStringExtra("restaurante_nombre");
-        ciudad = getIntent().getStringExtra("restaurante_ciudad");
-        telefono = getIntent().getStringExtra("restaurante_telefono");
-        tipo_cocina = getIntent().getStringExtra("restaurante_tipo_cocina");
-        valoracion = getIntent().getStringExtra("restaurante_valoracion");
-        */
 
-
-        TextView nombreTextView = (TextView) findViewById(R.id.textViewNombre);
-        nombreTextView.setText(id);
+        TextView nombreTextView = (TextView) findViewById(R.id.arTextViewNombre);
+        nombreTextView.setText(String.valueOf(id));
         /*
         TextView ciudadTextView = (TextView) findViewById(R.id.textViewCiudad);
         ciudadTextView.setText(ciudad);

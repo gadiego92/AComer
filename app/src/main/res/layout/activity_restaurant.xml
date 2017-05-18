@@ -13,7 +13,7 @@
     tools:context="com.informatica.ing_software.acomer.RestaurantActivity">
 
     <ImageView
-        android:id="@+id/imageViewRestaurante"
+        android:id="@+id/arImageViewRestaurante"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="4"
@@ -30,7 +30,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textViewNombre"
+                android:id="@+id/arTextViewNombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -40,7 +40,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textViewCiudad"
+                android:id="@+id/arTextViewCiudad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -50,7 +50,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textViewTipoCocina"
+                android:id="@+id/arTextViewTipoCocina"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -60,7 +60,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textViewTelefono"
+                android:id="@+id/arTextViewTelefono"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -70,7 +70,7 @@
                 android:textStyle="bold" />
 
             <RatingBar
-                android:id="@+id/ratingBarRestaurante"
+                android:id="@+id/arRatingBarRestaurante"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -78,13 +78,13 @@
                 android:numStars="3" />
 
             <Button
-                android:id="@+id/buttonOpiniones"
+                android:id="@+id/arButtonOpiniones"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/resButtonOpiniones" />
 
             <Button
-                android:id="@+id/buttonProductos"
+                android:id="@+id/arButtonProductos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/resButtonProductos" />

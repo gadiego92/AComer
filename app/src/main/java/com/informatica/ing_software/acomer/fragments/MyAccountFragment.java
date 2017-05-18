@@ -38,7 +38,7 @@ public class MyAccountFragment extends Fragment {
     private final String TAG_USERS = "usuario";
     // URL to get favorites restaurants
     //private final String USUARIOS_INFORMACION = "http://amaterasu.unileon.es/benten/aComerAndroid/p3_usuarios_informacion.php";
-    private final String USUARIOS_INFORMACION = R.string.urlServer + "p3_usuarios_informacion.php";
+    private final String USUARIOS_INFORMACION = "http://192.168.0.14/proyecto/aComerAndroid/p3_usuarios_informacion.php";
     // Creating JSON Parser object
     private JSONParser jParser = new JSONParser();
     private String usuario_email;
@@ -57,15 +57,18 @@ public class MyAccountFragment extends Fragment {
      */
     public static MyAccountFragment newInstance(String email) {
         MyAccountFragment fragment = new MyAccountFragment();
+
         Bundle args = new Bundle();
         args.putString(USUARIO_EMAIL, email);
         fragment.setArguments(args);
+
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             usuario_email = getArguments().getString(USUARIO_EMAIL);
 

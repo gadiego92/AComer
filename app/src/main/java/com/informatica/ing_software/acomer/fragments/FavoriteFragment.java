@@ -48,7 +48,7 @@ public class FavoriteFragment extends Fragment {
     private final String TAG_RESTAURANTS = "restaurantes";
     // URL to get favorites restaurants
     //private final String USUARIOS_FAVORITOS = "http://amaterasu.unileon.es/benten/aComerAndroid/p2_usuarios_favoritos.php";
-    private final String USUARIOS_FAVORITOS = R.string.urlServer + "p2_usuarios_favoritos.php";
+    private final String USUARIOS_FAVORITOS = "http://192.168.0.14/proyecto/aComerAndroid/p2_usuarios_favoritos.php";
     // Creating JSON Parser object
     private JSONParser jParser = new JSONParser();
     private String usuario_email;
@@ -68,9 +68,11 @@ public class FavoriteFragment extends Fragment {
      */
     public static FavoriteFragment newInstance(String email) {
         FavoriteFragment fragment = new FavoriteFragment();
+
         Bundle args = new Bundle();
         args.putString(USUARIO_EMAIL, email);
         fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -90,79 +92,58 @@ public class FavoriteFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_favorite, container, false);
-
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_favorite, container, false);
-        ListView lv = (ListView) view.findViewById(R.id.ListViewFavourites);
+        // Get the listView
+        ListView lv = (ListView) view.findViewById(R.id.ffListViewFavourite);
 
-////////////////////////////////////////////////////////
-// PROBAR ESTO
-////////////////////////////////////////////////////////
         // Item Click Listener
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long arg3) {
-                /*
+                // Create a new intent
                 Intent intent = new Intent(getActivity(), RestaurantActivity.class);
-                intent.putExtra("restaurante_id", ((Restaurante) arg0.getAdapter().getItem(position)).getId());
-                startActivity(intent);
-                */
-
-                Intent intent = new Intent(getActivity(), RestaurantActivity.class);
+                // Send the restaurant id to the Restaurant Activity
                 intent.putExtra("restaurante_id", ((Restaurante) adapterView.getAdapter().getItem(position)).getId());
-                /*
-                intent.putExtra("restaurante_id", ((Restaurante) arg0.getAdapter().getItem(position)).getId());
-                intent.putExtra("restaurante_nombre", ((Restaurante) arg0.getAdapter().getItem(position)).getNombre());
-                intent.putExtra("restaurante_ciudad", ((Restaurante) arg0.getAdapter().getItem(position)).getCiudad());
-                intent.putExtra("restaurante_telefono", ((Restaurante) arg0.getAdapter().getItem(position)).getTelefono());
-                intent.putExtra("restaurante_tipo_cocina", ((Restaurante) arg0.getAdapter().getItem(position)).getTipo_cocina());
-                intent.putExtra("restaurante_valoracion", ((Restaurante) arg0.getAdapter().getItem(position)).getValoracion());
-                */
+                // Start Restaurant Activity
                 startActivity(intent);
-
-                // Mostramos un mensaje con el elemento pulsado
-                Toast.makeText(getActivity(), "Pulsación " + position,
-                        Toast.LENGTH_SHORT).show();
             }
         });
 
-////////////////////////////////////////////////////////
-// PROBAR ESTO
-////////////////////////////////////////////////////////
         // Item Long Click Listener
         lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long arg3) {
-                // Creamos un cuadro de dialogo
+                // Create the AlertDialog
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle(R.string.dialogTitle);
-                builder.setMessage("¿Desea eliminar el restaurante "
-                        + ((Restaurante) adapterView.getAdapter().getItem(position)).getNombre()
-                        + " de su lista de favoritos?");
 
-                // Add the buttons
+                // Add the icon
+                builder.setIcon(android.R.drawable.ic_dialog_alert);
+                // Add the title
+                builder.setTitle(R.string.dialogTitle);
+                // Add the message
+                builder.setMessage("¿Desea eliminar el restaurante '"
+                        + ((Restaurante) adapterView.getAdapter().getItem(position)).getNombre()
+                        + "' de su lista de favoritos?");
+
+                // Add the positive button
                 builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        // User clicked OK button
-                        Toast.makeText(getActivity(), "Ok",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                });
-                builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        // User cancelled the dialog
-                        Toast.makeText(getActivity(), "Cancel",
-                                Toast.LENGTH_SHORT).show();
+                        // Delete the favourite restaurant from the database
                     }
                 });
 
-                // Create the AlertDialog
-                AlertDialog dialog = builder.create();
-                // Mostramos un mensaje con el elemento pulsado
-                Toast.makeText(getActivity(), "Pulsación Larga" + position,
-                        Toast.LENGTH_SHORT).show();
-                return false;
+                // Add the negative button
+                builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // Do nothing
+                    }
+                });
+
+                // Show the AlertDialog
+                builder.show();
+
+                // To avoid onItemClick event after onItemLongClick
+                return true;
             }
         });
 
@@ -174,6 +155,11 @@ public class FavoriteFragment extends Fragment {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
+    }
+
+    // Show a message if the favourite restaurants list is empty
+    public void showEmptyListMessage() {
+        Toast.makeText(getActivity(), "Lista de favoritos vacia!", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -245,14 +231,6 @@ public class FavoriteFragment extends Fragment {
                         lista_restaurantes.add(new Restaurante(id, nm, cd, tl, cn, vl));
                     }
                 }
-////////////////////////////////////////////////////////
-// PROBAR ESTO
-////////////////////////////////////////////////////////
-                /*
-                else {
-                    lista_restaurantes.add(new String[] { "0", "Lista de favoritos vacia" });
-                }
-                */
 
                 return lista_restaurantes;
             } catch (JSONException e) {
@@ -266,19 +244,16 @@ public class FavoriteFragment extends Fragment {
          * After completing background task Dismiss the progress dialog
          **/
         protected void onPostExecute(List<Restaurante> result) {
-////////////////////////////////////////////////////////
-// PROBAR ESTO
-////////////////////////////////////////////////////////
-
-            // Populate the ListView with the received data
-            // setListAdapter(new ArrayAdapter<String>(getActivity(), R.layout.fragment_favorite_item, R.id.textViewFavorite, list));
-
             // seleccionamos el listView
-            ListView lv = (ListView) getActivity().findViewById(R.id.ListViewFavourites);
+            ListView lv = (ListView) getActivity().findViewById(R.id.ffListViewFavourite);
 
             // cogemos los datos con el ListSearchAdapter y los mostramos
             ListFavouriteAdapter customAdapter = new ListFavouriteAdapter(getActivity(), R.layout.fragment_favorite_item, result);
             lv.setAdapter(customAdapter);
+
+            if(result.size() == 0) {
+                showEmptyListMessage();
+            }
         }
     }
 }

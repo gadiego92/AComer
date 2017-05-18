@@ -42,10 +42,10 @@ public class ListSearchAdapter extends ArrayAdapter<Restaurante> {
         Restaurante restaurante = getItem(position);
 
         if (restaurante != null) {
-            TextView textNombre = (TextView) rowView.findViewById(R.id.textViewNombre);
-            TextView textCiudad = (TextView) rowView.findViewById(R.id.textViewCiudad);
-            TextView textCocina = (TextView) rowView.findViewById(R.id.textViewCocina);
-            RatingBar ratingValoracion = (RatingBar) rowView.findViewById(R.id.ratingBarValoracion);
+            TextView textNombre = (TextView) rowView.findViewById(R.id.fsTextViewNombre);
+            TextView textCiudad = (TextView) rowView.findViewById(R.id.fsTextViewCiudad);
+            TextView textCocina = (TextView) rowView.findViewById(R.id.fsTextViewCocina);
+            RatingBar ratingValoracion = (RatingBar) rowView.findViewById(R.id.fsRatingBarValoracion);
 
             if (textNombre != null) {
                 textNombre.setText(restaurante.getNombre());

@@ -12,21 +12,21 @@
         android:padding="7dp">
 
         <TextView
-            android:id="@+id/textViewNombre"
+            android:id="@+id/fsTextViewNombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="2dp"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
-            android:id="@+id/textViewCiudad"
+            android:id="@+id/fsTextViewCiudad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="2dp"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <TextView
-            android:id="@+id/textViewCocina"
+            android:id="@+id/fsTextViewCocina"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="2dp" />
@@ -40,7 +40,7 @@
         android:orientation="vertical">
 
         <RatingBar
-            android:id="@+id/ratingBarValoracion"
+            android:id="@+id/fsRatingBarValoracion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:isIndicator="true"

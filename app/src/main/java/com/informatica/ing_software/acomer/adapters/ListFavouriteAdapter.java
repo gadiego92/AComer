@@ -44,7 +44,7 @@ public class ListFavouriteAdapter extends ArrayAdapter<Restaurante> {
         Restaurante restaurante = getItem(position);
 
         if (restaurante != null) {
-            TextView textNombre = (TextView) rowView.findViewById(R.id.textViewFavourite);
+            TextView textNombre = (TextView) rowView.findViewById(R.id.ffTextViewName);
 
             if (textNombre != null) {
                 textNombre.setText(restaurante.getNombre());
