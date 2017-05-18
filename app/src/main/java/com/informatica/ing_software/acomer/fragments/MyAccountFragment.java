@@ -37,8 +37,8 @@ public class MyAccountFragment extends Fragment {
     private final String TAG_SUCCESS = "success";
     private final String TAG_USERS = "usuario";
     // URL to get favorites restaurants
-    private final String USUARIOS_INFORMACION = "http://amaterasu.unileon.es/benten/aComerAndroid/p3_usuarios_informacion.php";
-    //private final String USUARIOS_INFORMACION = "http://192.168.0.14/proyecto/aComerAndroid/p3_usuarios_informacion.php";
+    //private final String USUARIOS_INFORMACION = "http://amaterasu.unileon.es/benten/aComerAndroid/p3_usuarios_informacion.php";
+    private final String USUARIOS_INFORMACION = R.string.urlServer + "p3_usuarios_informacion.php";
     // Creating JSON Parser object
     private JSONParser jParser = new JSONParser();
     private String usuario_email;

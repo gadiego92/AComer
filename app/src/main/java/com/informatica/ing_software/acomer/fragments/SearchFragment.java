@@ -37,12 +37,13 @@ import java.util.List;
 public class SearchFragment extends Fragment {
     // The fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String USUARIO_EMAIL = "usuario_email";
-    // URL to get favorites restaurants
-    private static String RESTAURANTES_SEARCH = "http://amaterasu.unileon.es/benten/aComerAndroid/p1_restaurantes_search.php";
+
     // JSON Node names
     private final String TAG_SUCCESS = "success";
     private final String TAG_RESTAURANTS = "restaurantes";
-    //private final String RESTAURANTES_SEARCH = "http://192.168.0.14/proyecto/aComerAndroid/p1_restaurantes_search.php";
+    // URL to get favorites restaurants
+    //private static String RESTAURANTES_SEARCH = "http://amaterasu.unileon.es/benten/aComerAndroid/p1_restaurantes_search.php";
+    private final String RESTAURANTES_SEARCH = R.string.urlServer + "p1_restaurantes_search.php";
     // Creating JSON Parser object
     private JSONParser jParser = new JSONParser();
     private String usuario_email;
@@ -88,14 +89,20 @@ public class SearchFragment extends Fragment {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long arg3) {
+////////////////////////////////////////////////////////
+// PROBAR ESTO
+////////////////////////////////////////////////////////
                 Intent intent = new Intent(getActivity(), RestaurantActivity.class);
+                intent.putExtra("restaurante_id", ((Restaurante) adapterView.getAdapter().getItem(position)).getId());
+                /*
                 intent.putExtra("restaurante_id", ((Restaurante) arg0.getAdapter().getItem(position)).getId());
                 intent.putExtra("restaurante_nombre", ((Restaurante) arg0.getAdapter().getItem(position)).getNombre());
                 intent.putExtra("restaurante_ciudad", ((Restaurante) arg0.getAdapter().getItem(position)).getCiudad());
                 intent.putExtra("restaurante_telefono", ((Restaurante) arg0.getAdapter().getItem(position)).getTelefono());
                 intent.putExtra("restaurante_tipo_cocina", ((Restaurante) arg0.getAdapter().getItem(position)).getTipo_cocina());
                 intent.putExtra("restaurante_valoracion", ((Restaurante) arg0.getAdapter().getItem(position)).getValoracion());
+                */
                 startActivity(intent);
             }
         });
@@ -164,12 +171,12 @@ public class SearchFragment extends Fragment {
                     JSONArray jsonArray = new JSONArray(restaurantes);
 
                     for (int i = 0; i < jsonArray.length(); i++) {
-                        int id = Integer.parseInt(((JSONObject) jsonArray.get(i)).getString("id"));    // Id
-                        String nm = ((JSONObject) jsonArray.get(i)).getString("nm");    // Nombre
-                        String cd = ((JSONObject) jsonArray.get(i)).getString("cd");    // Ciudad
-                        String tl = ((JSONObject) jsonArray.get(i)).getString("tl");    // Telefono
-                        String cn = ((JSONObject) jsonArray.get(i)).getString("cn");    // Cocina
-                        String vl = ((JSONObject) jsonArray.get(i)).getString("vl");    // Valoracion
+                        int id = Integer.parseInt(((JSONObject) jsonArray.get(i)).getString("id"));     // Id
+                        String nm = ((JSONObject) jsonArray.get(i)).getString("nm");                    // Nombre
+                        String cd = ((JSONObject) jsonArray.get(i)).getString("cd");                    // Ciudad
+                        String tl = ((JSONObject) jsonArray.get(i)).getString("tl");                    // Telefono
+                        String cn = ((JSONObject) jsonArray.get(i)).getString("cn");                    // Cocina
+                        String vl = ((JSONObject) jsonArray.get(i)).getString("vl");                    // Valoracion
 
                         lista_restaurantes.add(new Restaurante(id, nm, cd, tl, cn, vl));
                     }

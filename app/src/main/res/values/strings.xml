@@ -42,5 +42,12 @@
     <string name="miButtonEditarDatos">Editar perfil</string>
     <string name="miButtonCerrarSesion">Cerrar sesión</string>
 
+    <!-- Favourite deletion -->
+    <string name="dialogTitle"></string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
+
+    <!-- -URL Server -->
+    <string name="urlServer">http://10.130.58.135/proyecto/aComerAndroid/</string>
 
 </resources>
