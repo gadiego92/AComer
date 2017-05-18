@@ -167,5 +167,7 @@ public class FavoriteFragment extends ListFragment {
             // Populate the ListView with the received data
             setListAdapter(new ArrayAdapter<String>(getActivity(), R.layout.fragment_favorite_item, R.id.textViewFavorite, result));
         }
+
+        // Empieza IS2.
     }
 }
