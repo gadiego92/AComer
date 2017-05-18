@@ -1,0 +1,102 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_vertical_margin"
+    tools:context="com.informatica.ing_software.acomer.fragments.MyAccountFragment">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        app:srcCompat="@android:drawable/ic_menu_gallery" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textViewNombre1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/miNombre"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/miTextViewNombre2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/text_margin"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/textViewApellido"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/miApellido"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/miTextViewApellido2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/text_margin"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/textViewEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/miEmail"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/miTextViewEmail2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/text_margin"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textViewTelefono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/miTelefono"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/miTextViewTelefono2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/text_margin"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Button
+                android:id="@+id/buttonEditarInformacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/miButtonEditarDatos" />
+
+            <Button
+                android:id="@+id/buttonCerrarSesion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/miButtonCerrarSesion"
+                android:textColor="@color/colorRojo" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

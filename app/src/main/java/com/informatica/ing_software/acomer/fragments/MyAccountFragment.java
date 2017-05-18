@@ -5,15 +5,15 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.ListFragment;
 import android.support.v4.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import com.informatica.ing_software.acomer.R;
 import com.informatica.ing_software.acomer.json.JSONParser;
+import com.informatica.ing_software.acomer.objects.Usuario;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,26 +25,26 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link FavoriteFragment.OnFragmentInteractionListener} interface
+ * {@link MyAccountFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link FavoriteFragment#newInstance} factory method to
+ * Use the {@link MyAccountFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FavoriteFragment extends ListFragment {
+public class MyAccountFragment extends Fragment {
     // The fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String USUARIO_EMAIL = "usuario_email";
     // JSON Node names
     private final String TAG_SUCCESS = "success";
-    private final String TAG_RESTAURANTS = "restaurantes";
+    private final String TAG_USERS = "usuario";
     // URL to get favorites restaurants
-    private final String USUARIOS_FAVORITOS = "http://amaterasu.unileon.es/benten/aComerAndroid/p2_usuarios_favoritos.php";
-    //private final String USUARIOS_FAVORITOS = "http://192.168.0.14/proyecto/aComerAndroid/p2_usuarios_favoritos.php";
+    private final String USUARIOS_INFORMACION = "http://amaterasu.unileon.es/benten/aComerAndroid/p3_usuarios_informacion.php";
+    //private final String USUARIOS_INFORMACION = "http://192.168.0.14/proyecto/aComerAndroid/p3_usuarios_informacion.php";
     // Creating JSON Parser object
     private JSONParser jParser = new JSONParser();
     private String usuario_email;
     private OnFragmentInteractionListener mListener;
 
-    public FavoriteFragment() {
+    public MyAccountFragment() {
         // Required empty public constructor
     }
 
@@ -53,10 +53,10 @@ public class FavoriteFragment extends ListFragment {
      * this fragment using the provided parameters.
      *
      * @param email User's email.
-     * @return A new instance of fragment FavoriteFragment.
+     * @return A new instance of fragment MyAccountFragment.
      */
-    public static FavoriteFragment newInstance(String email) {
-        FavoriteFragment fragment = new FavoriteFragment();
+    public static MyAccountFragment newInstance(String email) {
+        MyAccountFragment fragment = new MyAccountFragment();
         Bundle args = new Bundle();
         args.putString(USUARIO_EMAIL, email);
         fragment.setArguments(args);
@@ -66,12 +66,11 @@ public class FavoriteFragment extends ListFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         if (getArguments() != null) {
             usuario_email = getArguments().getString(USUARIO_EMAIL);
 
             // Get favorite Restaurants
-            new GetFavoritos().execute(usuario_email);
+            new GetInformacionPersonal().execute(usuario_email);
         }
     }
 
@@ -79,7 +78,7 @@ public class FavoriteFragment extends ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favorite, container, false);
+        return inflater.inflate(R.layout.fragment_my_account, container, false);
     }
 
     public void onButtonPressed(Uri uri) {
@@ -122,18 +121,17 @@ public class FavoriteFragment extends ListFragment {
     /**
      * Background Async Task to load all favorite restaurants by making HTTP Request
      */
-    class GetFavoritos extends AsyncTask<String, Void, List<String>> {
+    class GetInformacionPersonal extends AsyncTask<String, Void, Usuario> {
 
-        protected List<String> doInBackground(String... args) {
+        protected Usuario doInBackground(String... args) {
             // Building Parameters
             List<Pair<String, String>> params = new ArrayList<Pair<String, String>>();
             params.add(new Pair<String, String>("email", args[0]));
 
             // Getting JSON string from URL
-            JSONObject json = jParser.makeHttpRequest(USUARIOS_FAVORITOS, params);
+            JSONObject json = jParser.makeHttpRequest(USUARIOS_INFORMACION, params);
 
             int success = -1;
-            List<String> list = new ArrayList<String>();
 
             try {
                 // Checking for SUCCESS TAG
@@ -141,18 +139,23 @@ public class FavoriteFragment extends ListFragment {
 
                 if (success == 1) {
                     // Get Restaurant Array
-                    String restaurantes = json.getString(TAG_RESTAURANTS);
+                    String usuario = json.getString(TAG_USERS);
                     // Converto to JSONArray
-                    JSONArray jsonArray = new JSONArray(restaurantes);
+                    JSONArray jsonArray = new JSONArray(usuario);
 
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        list.add(((JSONObject) jsonArray.get(i)).getString("nm"));
-                    }
+                    String nm = ((JSONObject) jsonArray.get(0)).getString("nm");    // Nombre
+                    String ap = ((JSONObject) jsonArray.get(0)).getString("ap");    // Apellido
+                    String tl = ((JSONObject) jsonArray.get(0)).getString("tl");    // Telefono
+                    String em = ((JSONObject) jsonArray.get(0)).getString("em");    // Email
+
+                    Usuario user = new Usuario(nm, ap, tl, em);
+
+                    return user;
                 } else {
-                    list.add("Lista de favoritos vacia");
+                    return null;
                 }
 
-                return list;
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -163,9 +166,11 @@ public class FavoriteFragment extends ListFragment {
         /**
          * After completing background task Dismiss the progress dialog
          **/
-        protected void onPostExecute(List<String> result) {
-            // Populate the ListView with the received data
-            setListAdapter(new ArrayAdapter<String>(getActivity(), R.layout.fragment_favorite_item, R.id.textViewFavorite, result));
+        protected void onPostExecute(Usuario result) {
+            ((TextView) getActivity().findViewById(R.id.miTextViewNombre2)).setText(result.getNombre());
+            ((TextView) getActivity().findViewById(R.id.miTextViewApellido2)).setText(result.getApellido());
+            ((TextView) getActivity().findViewById(R.id.miTextViewTelefono2)).setText(result.getTelefono());
+            ((TextView) getActivity().findViewById(R.id.miTextViewEmail2)).setText(result.getEmail());
         }
     }
 }

@@ -9,7 +9,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.informatica.ing_software.acomer.R;
-import com.informatica.ing_software.acomer.Restaurante;
+import com.informatica.ing_software.acomer.objects.Restaurante;
 
 import java.util.List;
 

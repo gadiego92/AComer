@@ -1,6 +1,7 @@
 package com.informatica.ing_software.acomer.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -9,12 +10,14 @@ import android.support.v4.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.informatica.ing_software.acomer.R;
-import com.informatica.ing_software.acomer.Restaurante;
+import com.informatica.ing_software.acomer.RestaurantActivity;
 import com.informatica.ing_software.acomer.adapters.ListSearchAdapter;
 import com.informatica.ing_software.acomer.json.JSONParser;
+import com.informatica.ing_software.acomer.objects.Restaurante;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,11 +37,12 @@ import java.util.List;
 public class SearchFragment extends Fragment {
     // The fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String USUARIO_EMAIL = "usuario_email";
+    // URL to get favorites restaurants
+    private static String RESTAURANTES_SEARCH = "http://amaterasu.unileon.es/benten/aComerAndroid/p1_restaurantes_search.php";
     // JSON Node names
     private final String TAG_SUCCESS = "success";
     private final String TAG_RESTAURANTS = "restaurantes";
-    // URL to get favorites restaurants
-    private final String RESTAURANTES_SEARCH = "http://192.168.0.14/proyecto/p1_restaurantes_search.php";
+    //private final String RESTAURANTES_SEARCH = "http://192.168.0.14/proyecto/aComerAndroid/p1_restaurantes_search.php";
     // Creating JSON Parser object
     private JSONParser jParser = new JSONParser();
     private String usuario_email;
@@ -78,7 +82,26 @@ public class SearchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search, container, false);
+        View view = inflater.inflate(R.layout.fragment_search, container, false);
+        ListView lv = (ListView) view.findViewById(R.id.ListViewRestaurantes);
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+                Intent intent = new Intent(getActivity(), RestaurantActivity.class);
+                intent.putExtra("restaurante_id", ((Restaurante) arg0.getAdapter().getItem(position)).getId());
+                intent.putExtra("restaurante_nombre", ((Restaurante) arg0.getAdapter().getItem(position)).getNombre());
+                intent.putExtra("restaurante_ciudad", ((Restaurante) arg0.getAdapter().getItem(position)).getCiudad());
+                intent.putExtra("restaurante_telefono", ((Restaurante) arg0.getAdapter().getItem(position)).getTelefono());
+                intent.putExtra("restaurante_tipo_cocina", ((Restaurante) arg0.getAdapter().getItem(position)).getTipo_cocina());
+                intent.putExtra("restaurante_valoracion", ((Restaurante) arg0.getAdapter().getItem(position)).getValoracion());
+                startActivity(intent);
+            }
+        });
+
+        // return inflate the layout for this fragment
+        return view;
     }
 
     public void onButtonPressed(Uri uri) {
@@ -141,12 +164,14 @@ public class SearchFragment extends Fragment {
                     JSONArray jsonArray = new JSONArray(restaurantes);
 
                     for (int i = 0; i < jsonArray.length(); i++) {
-                        String nm = ((JSONObject) jsonArray.get(i)).getString("nm");   // Nombre
+                        int id = Integer.parseInt(((JSONObject) jsonArray.get(i)).getString("id"));    // Id
+                        String nm = ((JSONObject) jsonArray.get(i)).getString("nm");    // Nombre
                         String cd = ((JSONObject) jsonArray.get(i)).getString("cd");    // Ciudad
+                        String tl = ((JSONObject) jsonArray.get(i)).getString("tl");    // Telefono
                         String cn = ((JSONObject) jsonArray.get(i)).getString("cn");    // Cocina
                         String vl = ((JSONObject) jsonArray.get(i)).getString("vl");    // Valoracion
 
-                        lista_restaurantes.add(new Restaurante(nm, cd, cn, vl));
+                        lista_restaurantes.add(new Restaurante(id, nm, cd, tl, cn, vl));
                     }
                 }
 

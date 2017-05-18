@@ -23,7 +23,9 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".RestaurantActivity" />
+        <activity android:name=".HelpActivity"></activity>
     </application>
 
 </manifest>
