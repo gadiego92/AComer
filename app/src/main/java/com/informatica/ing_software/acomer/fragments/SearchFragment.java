@@ -37,11 +37,12 @@ import java.util.List;
 public class SearchFragment extends Fragment {
     // The fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String USUARIO_EMAIL = "usuario_email";
+    // URL to get favorites restaurants
+    private static String RESTAURANTES_SEARCH = "http://amaterasu.unileon.es/benten/aComerAndroid/p1_restaurantes_search.php";
     // JSON Node names
     private final String TAG_SUCCESS = "success";
     private final String TAG_RESTAURANTS = "restaurantes";
-    // URL to get favorites restaurants
-    private final String RESTAURANTES_SEARCH = "http://192.168.0.14/proyecto/aComerAndroid/p1_restaurantes_search.php";
+    //private final String RESTAURANTES_SEARCH = "http://192.168.0.14/proyecto/aComerAndroid/p1_restaurantes_search.php";
     // Creating JSON Parser object
     private JSONParser jParser = new JSONParser();
     private String usuario_email;
