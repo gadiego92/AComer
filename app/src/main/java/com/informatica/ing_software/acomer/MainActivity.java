@@ -15,6 +15,7 @@ import com.informatica.ing_software.acomer.fragments.SearchFragment;
 public class MainActivity extends AppCompatActivity implements SearchFragment.OnFragmentInteractionListener,
         FavoriteFragment.OnFragmentInteractionListener, MyAccountFragment.OnFragmentInteractionListener, HelpFragment.OnFragmentInteractionListener {
 
+    // Prueba2
     Bundle bundle;
 
     @Override
