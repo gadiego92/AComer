@@ -30,7 +30,8 @@
     <string name="regRegistro">Registrarse</string>
 
     <!-- RestaurantLayout -->
-    <string name="resContacto">Contacto:</string>
+    <string name="resContacto">Contacto: </string>
+    <string name="resCocina">Cocina: </string>
     <string name="resButtonOpiniones">Opiniones</string>
     <string name="resButtonProductos">Oferta</string>
 

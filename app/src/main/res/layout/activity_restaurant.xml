@@ -81,12 +81,14 @@
                 android:id="@+id/aRestButtonOpiniones"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="mostrarOpiniones"
                 android:text="@string/resButtonOpiniones" />
 
             <Button
                 android:id="@+id/aRestButtonProductos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="mostrarProductos"
                 android:text="@string/resButtonProductos" />
 
         </LinearLayout>

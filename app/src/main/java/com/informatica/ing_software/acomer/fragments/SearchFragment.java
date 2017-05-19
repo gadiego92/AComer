@@ -37,7 +37,7 @@ import java.util.List;
 public class SearchFragment extends Fragment {
     // The fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String USUARIO_EMAIL = "usuario_email";
-
+    private static final String RESTAURANTE_ID = "restaurante_id";
     // JSON Node names
     private final String TAG_SUCCESS = "success";
     private final String TAG_RESTAURANTS = "restaurantes";
@@ -46,8 +46,9 @@ public class SearchFragment extends Fragment {
     private final String RESTAURANTES_SEARCH = "http://192.168.0.14/proyecto/aComerAndroid/p1_restaurantes_search.php";
     // Creating JSON Parser object
     private JSONParser jParser = new JSONParser();
-// private String usuario_email;
     private OnFragmentInteractionListener mListener;
+    // Extras
+    private String usuario_email;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -59,28 +60,26 @@ public class SearchFragment extends Fragment {
      *
      * @return A new instance of fragment SearchFragment.
      */
-    public static SearchFragment newInstance(/*String email*/) {
+    public static SearchFragment newInstance(String email) {
         SearchFragment fragment = new SearchFragment();
-/*
-Bundle args = new Bundle();
-args.putString(USUARIO_EMAIL, email);
-fragment.setArguments(args);
-*/
+
+        Bundle args = new Bundle();
+        args.putString(USUARIO_EMAIL, email);
+        fragment.setArguments(args);
+
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-/*
-if (getArguments() != null) {
-    usuario_email = getArguments().getString(USUARIO_EMAIL);
 
+        if (getArguments() != null) {
+            usuario_email = getArguments().getString(USUARIO_EMAIL);
 
-}
-*/
-        // Get last 20 added Restaurants
-        new GetRestaurants().execute();
+            // Get last 20 added Restaurants
+            new GetRestaurants().execute();
+        }
     }
 
     @Override
@@ -96,8 +95,9 @@ if (getArguments() != null) {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long arg3) {
                 // Create a new intent
                 Intent intent = new Intent(getActivity(), RestaurantActivity.class);
-                // Send the restaurant id to the Restaurant Activity
-                intent.putExtra("restaurante_id", ((Restaurante) adapterView.getAdapter().getItem(position)).getId());
+                // Send the username and the restaurant id to the Restaurant Activity
+                intent.putExtra(RESTAURANTE_ID, ((Restaurante) adapterView.getAdapter().getItem(position)).getId());
+                intent.putExtra(USUARIO_EMAIL, usuario_email);
                 // Start Restaurant Activity
                 startActivity(intent);
             }

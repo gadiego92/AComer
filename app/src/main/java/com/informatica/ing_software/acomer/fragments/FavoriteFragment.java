@@ -40,17 +40,20 @@ import java.util.List;
 public class FavoriteFragment extends Fragment {
     // The fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String USUARIO_EMAIL = "usuario_email";
+    private static final String RESTAURANTE_ID = "restaurante_id";
     // JSON Node names
     private final String TAG_SUCCESS = "success";
     private final String TAG_RESTAURANTS = "restaurantes";
     // URL to get favorites restaurants
     //private final String USUARIOS_FAVORITOS = "http://amaterasu.unileon.es/benten/aComerAndroid/p2_usuarios_favoritos.php";
+    //private final String ELIMINAR_FAVORITOS = "http://amaterasu.unileon.es/benten/aComerAndroid/p2_eliminar_favorito.php";
     private final String USUARIOS_FAVORITOS = "http://192.168.0.14/proyecto/aComerAndroid/p2_usuarios_favoritos.php";
+    private final String ELIMINAR_FAVORITOS = "http://192.168.0.14/proyecto/aComerAndroid/p2_eliminar_favorito.php";
     // Creating JSON Parser object
     private JSONParser jParser = new JSONParser();
-    private String usuario_email;
     private OnFragmentInteractionListener mListener;
-    private ArrayList<String[]> favouritesList;
+    // Extras
+    private String usuario_email;
 
     public FavoriteFragment() {
         // Required empty public constructor
@@ -99,8 +102,9 @@ public class FavoriteFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long arg3) {
                 // Create a new intent
                 Intent intent = new Intent(getActivity(), RestaurantActivity.class);
-                // Send the restaurant id to the Restaurant Activity
-                intent.putExtra("restaurante_id", ((Restaurante) adapterView.getAdapter().getItem(position)).getId());
+                // Send the username and the restaurant id to the Restaurant Activity
+                intent.putExtra(RESTAURANTE_ID, ((Restaurante) adapterView.getAdapter().getItem(position)).getId());
+                intent.putExtra(USUARIO_EMAIL, usuario_email);
                 // Start Restaurant Activity
                 startActivity(intent);
             }
@@ -122,10 +126,13 @@ public class FavoriteFragment extends Fragment {
                         + ((Restaurante) adapterView.getAdapter().getItem(position)).getNombre()
                         + "' de su lista de favoritos?");
 
+                final String restaurante_id = String.valueOf(((Restaurante) adapterView.getAdapter().getItem(position)).getId());
+
                 // Add the positive button
                 builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // Delete the favourite restaurant from the database
+                        new BorrarFavorito().execute(usuario_email, restaurante_id);
                     }
                 });
 
@@ -157,6 +164,15 @@ public class FavoriteFragment extends Fragment {
     // Show a message if the favourite restaurants list is empty
     public void showEmptyListMessage() {
         Toast.makeText(getActivity(), "Lista de favoritos vacia!", Toast.LENGTH_LONG).show();
+    }
+
+    // Show a message when a favourite restaurante i deleted
+    public void showFavDeletedMessage(int success) {
+        if(success == 1) {
+            Toast.makeText(getActivity(), "Favorito eliminado con exito!", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getActivity(), "Error eliminadno el favorito!", Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
@@ -250,6 +266,47 @@ public class FavoriteFragment extends Fragment {
             if(result.size() == 0) {
                 showEmptyListMessage();
             }
+        }
+    }
+
+/////////////////////////////////////////
+// Probar esto y el codigo PHP
+/////////////////////////////////////////
+
+    /**
+     * Background Async Task to delete a favorite restaurants by making HTTP Request
+     */
+    private class BorrarFavorito extends AsyncTask<String, Void, String> {
+
+        protected String doInBackground(String... args) {
+            // Building Parameters
+            List<Pair<String, String>> params = new ArrayList<Pair<String, String>>();
+            params.add(new Pair<String, String>(USUARIO_EMAIL, args[0]));
+            params.add(new Pair<String, String>(RESTAURANTE_ID, args[1]));
+
+            // Getting JSON string from URL
+            JSONObject json = jParser.makeHttpRequest(ELIMINAR_FAVORITOS, params);
+
+            int success = -1;
+
+            try {
+                // Checking for SUCCESS TAG
+                success = json.getInt(TAG_SUCCESS);
+
+                return String.valueOf(success);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        /**
+         * After completing background task Dismiss the progress dialog
+         **/
+        protected void onPostExecute(String result) {
+            // Show a message after delete
+            showFavDeletedMessage(Integer.parseInt(result));
         }
     }
 }

@@ -56,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    // Abrimos la activity de registro al pulsar el boton registrarse
+    // Abrimos la activity de registro al pulsar el boton "Registrarse"
     public void registrarse(View view) {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);

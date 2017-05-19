@@ -154,11 +154,7 @@ public class MyAccountFragment extends Fragment {
                     Usuario user = new Usuario(nm, ap, tl, em);
 
                     return user;
-                } else {
-                    return null;
                 }
-
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }

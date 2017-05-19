@@ -26,10 +26,10 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.On
         SearchFragment searchFragment = new SearchFragment();
 
         // Regogegemos los datos pasados del LoginActivity
-        // bundle = getIntent().getExtras();
+        bundle = getIntent().getExtras();
 
         // Pasamos los extras del Intent al fragmento como argumentos
-        // searchFragment.setArguments(bundle);
+        searchFragment.setArguments(bundle);
 
         // Añadimos el fragmento al FrameLayout 'fragment_container'
         getSupportFragmentManager().beginTransaction()
@@ -40,69 +40,69 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.On
                 findViewById(R.id.aMainBottom_navigation);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(
-                new BottomNavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        switch (item.getItemId()) {
-                            case R.id.accion_buscar:
-                                //textView.setText("Buscar");
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    switch (item.getItemId()) {
+                        case R.id.accion_buscar:
+                            //textView.setText("Buscar");
 
-                                // Creamos una instancia de SearchFragment
-                                SearchFragment searchFragment = new SearchFragment();
+                            // Creamos una instancia de SearchFragment
+                            SearchFragment searchFragment = new SearchFragment();
 
-                                // Pasamos los extras del Intent al fragmento como argumentos
-                                // searchFragment.setArguments(getIntent().getExtras());
+                            // Pasamos los extras del Intent al fragmento como argumentos
+                            searchFragment.setArguments(getIntent().getExtras());
 
-                                // Añadimos el fragmento al FrameLayout 'fragment_container'
-                                getSupportFragmentManager().beginTransaction()
-                                        .replace(R.id.aMainFragment_container, searchFragment).commit();
+                            // Añadimos el fragmento al FrameLayout 'fragment_container'
+                            getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.aMainFragment_container, searchFragment).commit();
 
-                                break;
-                            case R.id.accion_favoritos:
-                                //textView.setText("Favoritos");
+                            break;
+                        case R.id.accion_favoritos:
+                            //textView.setText("Favoritos");
 
-                                // Creamos una instancia de SearchFragment
-                                FavoriteFragment favoriteFragment = new FavoriteFragment();
+                            // Creamos una instancia de SearchFragment
+                            FavoriteFragment favoriteFragment = new FavoriteFragment();
 
-                                // Pasamos los extras del Intent al fragmento como argumentos
-                                favoriteFragment.setArguments(getIntent().getExtras());
+                            // Pasamos los extras del Intent al fragmento como argumentos
+                            favoriteFragment.setArguments(getIntent().getExtras());
 
-                                // Añadimos el fragmento al FrameLayout 'fragment_container'
-                                getSupportFragmentManager().beginTransaction()
-                                        .replace(R.id.aMainFragment_container, favoriteFragment).commit();
-                                break;
-                            case R.id.accion_mi_cuenta:
-                                //textView.setText("Mi Cuenta");
+                            // Añadimos el fragmento al FrameLayout 'fragment_container'
+                            getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.aMainFragment_container, favoriteFragment).commit();
+                            break;
+                        case R.id.accion_mi_cuenta:
+                            //textView.setText("Mi Cuenta");
 
-                                // Creamos una instancia de SearchFragment
-                                MyAccountFragment miAccountFragment = new MyAccountFragment();
+                            // Creamos una instancia de SearchFragment
+                            MyAccountFragment miAccountFragment = new MyAccountFragment();
 
-                                // Pasamos los extras del Intent al fragmento como argumentos
-                                miAccountFragment.setArguments(getIntent().getExtras());
+                            // Pasamos los extras del Intent al fragmento como argumentos
+                            miAccountFragment.setArguments(getIntent().getExtras());
 
-                                // Añadimos el fragmento al FrameLayout 'fragment_container'
-                                getSupportFragmentManager().beginTransaction()
-                                        .replace(R.id.aMainFragment_container, miAccountFragment).commit();
-                                break;
-                            case R.id.accion_ayuda:
-                                //textView.setText("Mi Cuenta");
+                            // Añadimos el fragmento al FrameLayout 'fragment_container'
+                            getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.aMainFragment_container, miAccountFragment).commit();
+                            break;
+                        case R.id.accion_ayuda:
+                            //textView.setText("Mi Cuenta");
 
-                                // Creamos una instancia de SearchFragment
-                                HelpFragment helpFragment = new HelpFragment();
+                            // Creamos una instancia de SearchFragment
+                            HelpFragment helpFragment = new HelpFragment();
 
-                                // Pasamos los extras del Intent al fragmento como argumentos
-                                helpFragment.setArguments(getIntent().getExtras());
+                            // Pasamos los extras del Intent al fragmento como argumentos
+                            helpFragment.setArguments(getIntent().getExtras());
 
-                                // Añadimos el fragmento al FrameLayout 'fragment_container'
-                                getSupportFragmentManager().beginTransaction()
-                                        .replace(R.id.aMainFragment_container, helpFragment).commit();
-                                break;
+                            // Añadimos el fragmento al FrameLayout 'fragment_container'
+                            getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.aMainFragment_container, helpFragment).commit();
+                            break;
 
-                        }
-
-                        return false;
                     }
+
+                    return false;
                 }
+            }
         );
     }
 

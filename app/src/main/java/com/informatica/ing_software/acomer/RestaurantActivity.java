@@ -1,9 +1,11 @@
 package com.informatica.ing_software.acomer;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -18,7 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RestaurantActivity extends AppCompatActivity {
-
+    private static final String USUARIO_EMAIL = "usuario_email";
+    private static final String RESTAURANTE_ID = "restaurante_id";
     // JSON Node names
     private final String TAG_SUCCESS = "success";
     private final String TAG_RESTAURANTS = "restaurantes";
@@ -27,19 +30,40 @@ public class RestaurantActivity extends AppCompatActivity {
     private final String GET_RESTAURANT = "http://192.168.0.14/proyecto/aComerAndroid/get_restaurantes.php";
     // Creating JSON Parser object
     private JSONParser jParser = new JSONParser();
-    private int id_restaurante;
+    // Extras
+    private int restaurante_id;
+    private String usuario_email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant);
 
-        id_restaurante = getIntent().getIntExtra("restaurante_id", 0);
+        restaurante_id = getIntent().getIntExtra(RESTAURANTE_ID, 0);
+        usuario_email = getIntent().getStringExtra(USUARIO_EMAIL);
 
-        if (id_restaurante != 0) {
+        if (restaurante_id != 0) {
             // Get Restaurant by ID
-            new GetRestaurante().execute(String.valueOf(id_restaurante));
+            new GetRestaurante().execute(String.valueOf(restaurante_id));
         }
+    }
+
+    // Abrimos la activity de productos al pulsar el boton "Productos"
+    public void mostrarProductos(View view) {
+        /*
+         * De momento esto no está previsto hacerlo
+         */
+    }
+
+    // Abrimos la activity de Opiniones al pulsar el boton "Opiniones"
+    public void mostrarOpiniones(View view) {
+// Create a new intent
+// Intent intent = new Intent(this, OpinionesActivity.class);
+// Send the username and the restaurant id to the Restaurant Activity
+// intent.putExtra(RESTAURANTE_ID, restaurante_id);
+// intent.putExtra(USUARIO_EMAIL, usuario_email);
+// Start Restaurant Activity
+// startActivity(intent);
     }
 
     private void updateUI(Restaurante restaurante) {
@@ -53,8 +77,8 @@ public class RestaurantActivity extends AppCompatActivity {
 
         nombreTextView.setText(restaurante.getNombre());
         ciudadTextView.setText(restaurante.getCiudad());
-        tipoCocinaTextView.setText("Cocina: " + restaurante.getTipo_cocina());
-        telefonoTextView.setText("Contacto: " + restaurante.getTelefono());
+        tipoCocinaTextView.setText(R.string.resCocina + restaurante.getTipo_cocina());
+        telefonoTextView.setText(R.string.resCocina + restaurante.getTelefono());
         valoracionRatingBar.setRating(Float.parseFloat(restaurante.getValoracion()));
     }
 
