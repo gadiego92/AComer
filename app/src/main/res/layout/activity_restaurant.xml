@@ -13,16 +13,16 @@
     tools:context="com.informatica.ing_software.acomer.RestaurantActivity">
 
     <ImageView
-        android:id="@+id/arImageViewRestaurante"
+        android:id="@+id/aRestImageViewRestaurante"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="4"
+        android:layout_weight="3"
         app:srcCompat="@drawable/generico_restaurante" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="6">
+        android:layout_weight="7">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,7 +30,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/arTextViewNombre"
+                android:id="@+id/aRestTextViewNombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -40,7 +40,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/arTextViewCiudad"
+                android:id="@+id/aRestTextViewCiudad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -50,7 +50,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/arTextViewTipoCocina"
+                android:id="@+id/aRestTextViewTipoCocina"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -60,7 +60,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/arTextViewTelefono"
+                android:id="@+id/aRestTextViewTelefono"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -70,7 +70,7 @@
                 android:textStyle="bold" />
 
             <RatingBar
-                android:id="@+id/arRatingBarRestaurante"
+                android:id="@+id/aRestRatingBarValoracion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -78,13 +78,13 @@
                 android:numStars="3" />
 
             <Button
-                android:id="@+id/arButtonOpiniones"
+                android:id="@+id/aRestButtonOpiniones"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/resButtonOpiniones" />
 
             <Button
-                android:id="@+id/arButtonProductos"
+                android:id="@+id/aRestButtonProductos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/resButtonProductos" />

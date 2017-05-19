@@ -16,10 +16,6 @@ import java.util.List;
  * Created by Diego on 18/05/2017.
  */
 
-////////////////////////////////////////////////////////
-// PROBAR ESTO
-////////////////////////////////////////////////////////
-
 public class ListFavouriteAdapter extends ArrayAdapter<Restaurante> {
 
     public ListFavouriteAdapter(Context context, int textViewResourceId) {
@@ -44,7 +40,7 @@ public class ListFavouriteAdapter extends ArrayAdapter<Restaurante> {
         Restaurante restaurante = getItem(position);
 
         if (restaurante != null) {
-            TextView textNombre = (TextView) rowView.findViewById(R.id.ffTextViewName);
+            TextView textNombre = (TextView) rowView.findViewById(R.id.fFavTextViewName);
 
             if (textNombre != null) {
                 textNombre.setText(restaurante.getNombre());

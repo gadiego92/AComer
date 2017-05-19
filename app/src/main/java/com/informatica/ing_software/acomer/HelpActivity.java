@@ -15,8 +15,8 @@ public class HelpActivity extends AppCompatActivity {
         Intent searchIntent = getIntent();
         int preguntaRespuesta = getIntent().getIntExtra("posicion", 0);
 
-        TextView textViewPregunta = (TextView) findViewById(R.id.textViewPregunta);
-        TextView textViewRespuesta = (TextView) findViewById(R.id.textViewRespuesta);
+        TextView textViewPregunta = (TextView) findViewById(R.id.aHelpTextViewPregunta);
+        TextView textViewRespuesta = (TextView) findViewById(R.id.aHelpTextViewRespuesta);
 
         textViewPregunta.setText(HelpConstants.PREGUNTAS[preguntaRespuesta]);
         textViewRespuesta.setText(HelpConstants.RESPUESTAS[preguntaRespuesta]);

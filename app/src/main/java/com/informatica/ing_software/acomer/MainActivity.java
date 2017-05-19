@@ -26,18 +26,18 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.On
         SearchFragment searchFragment = new SearchFragment();
 
         // Regogegemos los datos pasados del LoginActivity
-        bundle = getIntent().getExtras();
+        // bundle = getIntent().getExtras();
 
         // Pasamos los extras del Intent al fragmento como argumentos
-        searchFragment.setArguments(bundle);
+        // searchFragment.setArguments(bundle);
 
         // Añadimos el fragmento al FrameLayout 'fragment_container'
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragment_container, searchFragment).commit();
+                .add(R.id.aMainFragment_container, searchFragment).commit();
 
         // Bottom Navigation View
         BottomNavigationView bottomNavigationView = (BottomNavigationView)
-                findViewById(R.id.bottom_navigation);
+                findViewById(R.id.aMainBottom_navigation);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -51,11 +51,11 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.On
                                 SearchFragment searchFragment = new SearchFragment();
 
                                 // Pasamos los extras del Intent al fragmento como argumentos
-                                searchFragment.setArguments(getIntent().getExtras());
+                                // searchFragment.setArguments(getIntent().getExtras());
 
                                 // Añadimos el fragmento al FrameLayout 'fragment_container'
                                 getSupportFragmentManager().beginTransaction()
-                                        .replace(R.id.fragment_container, searchFragment).commit();
+                                        .replace(R.id.aMainFragment_container, searchFragment).commit();
 
                                 break;
                             case R.id.accion_favoritos:
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.On
 
                                 // Añadimos el fragmento al FrameLayout 'fragment_container'
                                 getSupportFragmentManager().beginTransaction()
-                                        .replace(R.id.fragment_container, favoriteFragment).commit();
+                                        .replace(R.id.aMainFragment_container, favoriteFragment).commit();
                                 break;
                             case R.id.accion_mi_cuenta:
                                 //textView.setText("Mi Cuenta");
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.On
 
                                 // Añadimos el fragmento al FrameLayout 'fragment_container'
                                 getSupportFragmentManager().beginTransaction()
-                                        .replace(R.id.fragment_container, miAccountFragment).commit();
+                                        .replace(R.id.aMainFragment_container, miAccountFragment).commit();
                                 break;
                             case R.id.accion_ayuda:
                                 //textView.setText("Mi Cuenta");
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.On
 
                                 // Añadimos el fragmento al FrameLayout 'fragment_container'
                                 getSupportFragmentManager().beginTransaction()
-                                        .replace(R.id.fragment_container, helpFragment).commit();
+                                        .replace(R.id.aMainFragment_container, helpFragment).commit();
                                 break;
 
                         }

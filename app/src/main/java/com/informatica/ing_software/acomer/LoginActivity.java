@@ -38,8 +38,8 @@ public class LoginActivity extends AppCompatActivity {
     // Procedemos con el login al pulsar el boton "Iniciar sesion"
     public void loguearse(View view) {
         EditText eUsuario, ePassword;
-        eUsuario = (EditText) findViewById(R.id.editTextUsername);
-        ePassword = (EditText) findViewById(R.id.editTextPassword);
+        eUsuario = (EditText) findViewById(R.id.aLoginEditTextUsername);
+        ePassword = (EditText) findViewById(R.id.aLoginEditTextPassword);
 
         String usuario = eUsuario.getText().toString().toLowerCase().trim();
         String password = ePassword.getText().toString().trim();
@@ -124,7 +124,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             } else {
                 // Login incorrecto
-                TextView textViewErrorLogin = (TextView) findViewById(R.id.textViewErrorLogin);
+                TextView textViewErrorLogin = (TextView) findViewById(R.id.aLoginTextViewErrorLogin);
                 textViewErrorLogin.setVisibility(TextView.VISIBLE);
             }
         }

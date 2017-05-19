@@ -38,7 +38,6 @@ public class HelpFragment extends Fragment {
      *
      * @return A new instance of fragment HelpFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static HelpFragment newInstance() {
         HelpFragment fragment = new HelpFragment();
         Bundle args = new Bundle();
@@ -59,7 +58,7 @@ public class HelpFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_help, container, false);
-        ListView helpListView = (ListView) view.findViewById(R.id.helpListView);
+        ListView helpListView = (ListView) view.findViewById(R.id.fHelpListView);
 
         helpListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -76,11 +75,8 @@ public class HelpFragment extends Fragment {
 
         // return inflate the layout for this fragment
         return view;
-
-
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -115,7 +111,6 @@ public class HelpFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 }

@@ -5,7 +5,8 @@
     tools:context="com.informatica.ing_software.acomer.fragments.HelpFragment">
 
     <ListView
-        android:id="@+id/helpListView"
+        android:id="@+id/fHelpListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
 </FrameLayout>

@@ -7,21 +7,18 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.ListFragment;
 import android.support.v4.util.Pair;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.informatica.ing_software.acomer.R;
 import com.informatica.ing_software.acomer.RestaurantActivity;
 import com.informatica.ing_software.acomer.adapters.ListFavouriteAdapter;
-import com.informatica.ing_software.acomer.adapters.ListSearchAdapter;
 import com.informatica.ing_software.acomer.json.JSONParser;
 import com.informatica.ing_software.acomer.objects.Restaurante;
 
@@ -94,7 +91,7 @@ public class FavoriteFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_favorite, container, false);
         // Get the listView
-        ListView lv = (ListView) view.findViewById(R.id.ffListViewFavourite);
+        ListView lv = (ListView) view.findViewById(R.id.fFavListViewFavourites);
 
         // Item Click Listener
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -226,7 +223,6 @@ public class FavoriteFragment extends Fragment {
                         String tl = ((JSONObject) jsonArray.get(i)).getString("tl");                    // Telefono
                         String cn = ((JSONObject) jsonArray.get(i)).getString("cn");                    // Cocina
                         String vl = ((JSONObject) jsonArray.get(i)).getString("vl");                    // Valoracion
-                        // list.add(((JSONObject) jsonArray.get(i)).getString("nm"));
 
                         lista_restaurantes.add(new Restaurante(id, nm, cd, tl, cn, vl));
                     }
@@ -245,7 +241,7 @@ public class FavoriteFragment extends Fragment {
          **/
         protected void onPostExecute(List<Restaurante> result) {
             // seleccionamos el listView
-            ListView lv = (ListView) getActivity().findViewById(R.id.ffListViewFavourite);
+            ListView lv = (ListView) getActivity().findViewById(R.id.fFavListViewFavourites);
 
             // cogemos los datos con el ListSearchAdapter y los mostramos
             ListFavouriteAdapter customAdapter = new ListFavouriteAdapter(getActivity(), R.layout.fragment_favorite_item, result);

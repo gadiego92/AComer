@@ -20,20 +20,20 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textViewPregunta"
+                android:id="@+id/aHelpTextViewPregunta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Pregunta"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
             <TextView
-                android:id="@+id/textViewRespuesta"
+                android:id="@+id/aHelpTextViewRespuesta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Respuesta"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
         </LinearLayout>
-    </ScrollView>
 
+    </ScrollView>
 
 </RelativeLayout>

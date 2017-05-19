@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.informatica.ing_software.acomer.R;
 import com.informatica.ing_software.acomer.objects.Restaurante;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -42,10 +41,10 @@ public class ListSearchAdapter extends ArrayAdapter<Restaurante> {
         Restaurante restaurante = getItem(position);
 
         if (restaurante != null) {
-            TextView textNombre = (TextView) rowView.findViewById(R.id.fsTextViewNombre);
-            TextView textCiudad = (TextView) rowView.findViewById(R.id.fsTextViewCiudad);
-            TextView textCocina = (TextView) rowView.findViewById(R.id.fsTextViewCocina);
-            RatingBar ratingValoracion = (RatingBar) rowView.findViewById(R.id.fsRatingBarValoracion);
+            TextView textNombre = (TextView) rowView.findViewById(R.id.fSearchTextViewNombre);
+            TextView textCiudad = (TextView) rowView.findViewById(R.id.fSearchTextViewCiudad);
+            TextView textCocina = (TextView) rowView.findViewById(R.id.fSearchTextViewCocina);
+            RatingBar ratingValoracion = (RatingBar) rowView.findViewById(R.id.fSearchRatingBarValoracion);
 
             if (textNombre != null) {
                 textNombre.setText(restaurante.getNombre());

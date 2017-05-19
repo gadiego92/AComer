@@ -13,13 +13,17 @@ public class Restaurante {
     private String tipo_cocina;
     private String valoracion;
 
+    public Restaurante() {
+        this.id = 0;
+        this.nombre = "";
+        this.ciudad = "";
+        this.telefono = "";
+        this.tipo_cocina = "";
+        this.valoracion = "";
+    }
+
     public Restaurante(int id, String nm, String cd, String tl, String cn, String vl) {
-        this.id = id;
-        this.nombre = nm;
-        this.ciudad = cd;
-        this.telefono = tl;
-        this.tipo_cocina = cn;
-        this.valoracion = vl;
+        setValues(id, nm, cd, tl, cn, vl);
     }
 
     public int getId() {
@@ -68,5 +72,14 @@ public class Restaurante {
 
     public void setValoracion(String valoracion) {
         this.valoracion = valoracion;
+    }
+
+    public void setValues(int id, String nm, String cd, String tl, String cn, String vl) {
+        this.id = id;
+        this.nombre = nm;
+        this.ciudad = cd;
+        this.telefono = tl;
+        this.tipo_cocina = cn;
+        this.valoracion = vl;
     }
 }

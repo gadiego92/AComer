@@ -46,7 +46,7 @@ public class SearchFragment extends Fragment {
     private final String RESTAURANTES_SEARCH = "http://192.168.0.14/proyecto/aComerAndroid/p1_restaurantes_search.php";
     // Creating JSON Parser object
     private JSONParser jParser = new JSONParser();
-    private String usuario_email;
+// private String usuario_email;
     private OnFragmentInteractionListener mListener;
 
     public SearchFragment() {
@@ -57,29 +57,30 @@ public class SearchFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param email User's email.
      * @return A new instance of fragment SearchFragment.
      */
-    public static SearchFragment newInstance(String email) {
+    public static SearchFragment newInstance(/*String email*/) {
         SearchFragment fragment = new SearchFragment();
-
-        Bundle args = new Bundle();
-        args.putString(USUARIO_EMAIL, email);
-        fragment.setArguments(args);
-
+/*
+Bundle args = new Bundle();
+args.putString(USUARIO_EMAIL, email);
+fragment.setArguments(args);
+*/
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+/*
+if (getArguments() != null) {
+    usuario_email = getArguments().getString(USUARIO_EMAIL);
 
-        if (getArguments() != null) {
-            usuario_email = getArguments().getString(USUARIO_EMAIL);
 
-            // Get favorite Restaurants
-            new GetRestaurants().execute();
-        }
+}
+*/
+        // Get last 20 added Restaurants
+        new GetRestaurants().execute();
     }
 
     @Override
@@ -87,25 +88,17 @@ public class SearchFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search, container, false);
-        ListView lv = (ListView) view.findViewById(R.id.fsListViewSearch);
+        ListView lv = (ListView) view.findViewById(R.id.fSearchListViewSearch);
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long arg3) {
-////////////////////////////////////////////////////////
-// PROBAR ESTO
-////////////////////////////////////////////////////////
+                // Create a new intent
                 Intent intent = new Intent(getActivity(), RestaurantActivity.class);
+                // Send the restaurant id to the Restaurant Activity
                 intent.putExtra("restaurante_id", ((Restaurante) adapterView.getAdapter().getItem(position)).getId());
-                /*
-                intent.putExtra("restaurante_id", ((Restaurante) arg0.getAdapter().getItem(position)).getId());
-                intent.putExtra("restaurante_nombre", ((Restaurante) arg0.getAdapter().getItem(position)).getNombre());
-                intent.putExtra("restaurante_ciudad", ((Restaurante) arg0.getAdapter().getItem(position)).getCiudad());
-                intent.putExtra("restaurante_telefono", ((Restaurante) arg0.getAdapter().getItem(position)).getTelefono());
-                intent.putExtra("restaurante_tipo_cocina", ((Restaurante) arg0.getAdapter().getItem(position)).getTipo_cocina());
-                intent.putExtra("restaurante_valoracion", ((Restaurante) arg0.getAdapter().getItem(position)).getValoracion());
-                */
+                // Start Restaurant Activity
                 startActivity(intent);
             }
         });
@@ -198,7 +191,7 @@ public class SearchFragment extends Fragment {
          **/
         protected void onPostExecute(List<Restaurante> result) {
             // seleccionamos el listView
-            ListView lv = (ListView) getActivity().findViewById(R.id.fsListViewSearch);
+            ListView lv = (ListView) getActivity().findViewById(R.id.fSearchListViewSearch);
 
             // cogemos los datos con el ListSearchAdapter y los mostramos
             ListSearchAdapter customAdapter = new ListSearchAdapter(getActivity(), R.layout.fragment_search_item, result);

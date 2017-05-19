@@ -11,7 +11,7 @@
     tools:context="com.informatica.ing_software.acomer.RegisterActivity">
 
     <TextView
-        android:id="@+id/registroTitulo"
+        android:id="@+id/aRegisterTextViewTitulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -21,7 +21,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <Button
-        android:id="@+id/registroButtonRegistro"
+        android:id="@+id/aRegisterButtonRegistro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -31,8 +31,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/registroButtonRegistro"
-        android:layout_below="@id/registroTitulo">
+        android:layout_above="@id/aRegisterButtonRegistro"
+        android:layout_below="@id/aRegisterTextViewTitulo">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -41,143 +41,143 @@
             android:padding="25dp">
 
             <TextView
-                android:id="@+id/registroTextViewEmail"
+                android:id="@+id/aRegisterTextViewEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/regEmail" />
 
             <EditText
-                android:id="@+id/registroEditTextEmail"
+                android:id="@+id/aRegisterEditTextEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textEmailAddress" />
 
             <TextView
-                android:id="@+id/registroTextViewPassword"
+                android:id="@+id/aRegisterTextViewPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/regPassword" />
 
             <EditText
-                android:id="@+id/registroEditTextPassword"
+                android:id="@+id/aRegisterEditTextPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPassword" />
 
             <TextView
-                android:id="@+id/registroTextViewPassword2"
+                android:id="@+id/aRegisterTextViewPassword2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/regPassword2" />
 
             <EditText
-                android:id="@+id/registroEditTextPassword2"
+                android:id="@+id/aRegisterEditTextPassword2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPassword" />
 
             <TextView
-                android:id="@+id/registroTextViewNombre"
+                android:id="@+id/aRegisterTextViewNombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/regNombre" />
 
             <EditText
-                android:id="@+id/registroEditTextNombre"
+                android:id="@+id/aRegisterEditTextNombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName" />
 
             <TextView
-                android:id="@+id/registroTextViewApellido"
+                android:id="@+id/aRegisterTextViewApellido"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/regApellido" />
 
             <EditText
-                android:id="@+id/registroEditTextApellido"
+                android:id="@+id/aRegisterEditTextApellido"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName" />
 
             <TextView
-                android:id="@+id/registroTextViewFechaNacimimiento"
+                android:id="@+id/aRegisterTextViewFechaNacimimiento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/regFechaNacimiento" />
 
             <EditText
-                android:id="@+id/registroEditTextFechaNacimiento"
+                android:id="@+id/aRegisterEditTextFechaNacimiento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="date" />
 
             <TextView
-                android:id="@+id/registroTextViewTelefono"
+                android:id="@+id/aRegisterTextViewTelefono"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/regTelefono" />
 
             <EditText
-                android:id="@+id/registroEditTextTelefono"
+                android:id="@+id/aRegisterEditTextTelefono"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="phone" />
 
             <TextView
-                android:id="@+id/registroTextViewCiudad"
+                android:id="@+id/aRegisterTextViewCiudad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/regCiudad" />
 
             <EditText
-                android:id="@+id/registroEditTextCiudad"
+                android:id="@+id/aRegisterEditTextCiudad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName" />
 
             <TextView
-                android:id="@+id/registroTextViewProvincia"
+                android:id="@+id/aRegisterTextViewProvincia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/regProvincia" />
 
             <EditText
-                android:id="@+id/registroEditTextProvincia"
+                android:id="@+id/aRegisterEditTextProvincia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName" />
 
             <TextView
-                android:id="@+id/registroTextViewPais"
+                android:id="@+id/aRegisterTextViewPais"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/regPais" />
 
             <EditText
-                android:id="@+id/registroEditTextPais"
+                android:id="@+id/aRegisterEditTextPais"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName" />
 
             <TextView
-                android:id="@+id/registroTextViewCodigoPostal"
+                android:id="@+id/aRegisterTextViewCodigoPostal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/regCodigoPostal" />
 
             <EditText
-                android:id="@+id/registroEditTextCodigoPostal"
+                android:id="@+id/aRegisterEditTextCodigoPostal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"

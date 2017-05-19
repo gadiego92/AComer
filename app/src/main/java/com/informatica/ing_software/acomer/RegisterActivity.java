@@ -40,17 +40,17 @@ public class RegisterActivity extends AppCompatActivity {
     // Procedemos con el registro al pulsar el boton "Registro"
     public void registrarse(View view) {
         // Cogemos toda la informacion introducida por el usuario en la pantalla de "Registro"
-        String email = ((EditText) findViewById(R.id.registroEditTextEmail)).getText().toString();
-        String password = ((EditText) findViewById(R.id.registroEditTextPassword)).getText().toString();
-        String password2 = ((EditText) findViewById(R.id.registroEditTextPassword2)).getText().toString();
-        String nombre = ((EditText) findViewById(R.id.registroEditTextNombre)).getText().toString();
-        String apellido = ((EditText) findViewById(R.id.registroEditTextApellido)).getText().toString();
-        String fechaNacimiento = ((EditText) findViewById(R.id.registroEditTextFechaNacimiento)).getText().toString();
-        String telefono = ((EditText) findViewById(R.id.registroEditTextTelefono)).getText().toString();
-        String ciudad = ((EditText) findViewById(R.id.registroEditTextCiudad)).getText().toString();
-        String provincia = ((EditText) findViewById(R.id.registroEditTextProvincia)).getText().toString();
-        String pais = ((EditText) findViewById(R.id.registroEditTextPais)).getText().toString();
-        String codigoPostal = ((EditText) findViewById(R.id.registroEditTextCodigoPostal)).getText().toString();
+        String email = ((EditText) findViewById(R.id.aRegisterEditTextEmail)).getText().toString();
+        String password = ((EditText) findViewById(R.id.aRegisterEditTextPassword)).getText().toString();
+        String password2 = ((EditText) findViewById(R.id.aRegisterEditTextPassword2)).getText().toString();
+        String nombre = ((EditText) findViewById(R.id.aRegisterEditTextNombre)).getText().toString();
+        String apellido = ((EditText) findViewById(R.id.aRegisterEditTextApellido)).getText().toString();
+        String fechaNacimiento = ((EditText) findViewById(R.id.aRegisterEditTextFechaNacimiento)).getText().toString();
+        String telefono = ((EditText) findViewById(R.id.aRegisterEditTextTelefono)).getText().toString();
+        String ciudad = ((EditText) findViewById(R.id.aRegisterEditTextCiudad)).getText().toString();
+        String provincia = ((EditText) findViewById(R.id.aRegisterEditTextProvincia)).getText().toString();
+        String pais = ((EditText) findViewById(R.id.aRegisterEditTextPais)).getText().toString();
+        String codigoPostal = ((EditText) findViewById(R.id.aRegisterEditTextCodigoPostal)).getText().toString();
 
         // Comprobamos que no haya ningun campo vacio
         if (!campoVacio(email) && !campoVacio(password) && !campoVacio(password2) && !campoVacio(nombre) && !campoVacio(apellido)
