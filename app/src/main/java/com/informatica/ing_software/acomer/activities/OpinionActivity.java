@@ -4,7 +4,10 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RatingBar;
 import android.widget.Toast;
 
 import com.informatica.ing_software.acomer.R;
@@ -22,12 +25,16 @@ import java.util.List;
 public class OpinionActivity extends AppCompatActivity {
     private static final String USUARIO_EMAIL = "usuario_email";
     private static final String RESTAURANTE_ID = "restaurante_id";
+    private static final String RESTAURANTE_OPINION = "opinion";
+    private static final String RESTAURANTE_ESTRELLAS = "numEstrellas";
     // JSON Node names
     private final String TAG_SUCCESS = "success";
     private final String TAG_OPINIONES = "opiniones";
     // URL to get favorites restaurants
     //private final String GET_OPINION = "http://amaterasu.unileon.es/benten/aComerAndroid/get_opiniones.php";
     private final String GET_OPINION = "http://192.168.0.14/proyecto/aComerAndroid/get_opiniones.php";
+    //private final String SET_OPINION = "http://amaterasu.unileon.es/benten/aComerAndroid/set_opiniones.php";
+    private final String SET_OPINION = "http://192.168.0.14/proyecto/aComerAndroid/set_opiniones.php";
     // Creating JSON Parser object
     private JSONParser jParser = new JSONParser();
     // Extras
@@ -48,9 +55,38 @@ public class OpinionActivity extends AppCompatActivity {
         }
     }
 
+    // Enviar Opinion al pulsar el boton
+    public void enviarOpinion(View view) {
+        String opinion = ((EditText) findViewById(R.id.aOpinionEditTextWriteOpinion)).getText().toString().trim();
+        int numStars = ((RatingBar) findViewById(R.id.aOpinionRatingBarOpinion)).getNumStars();
+
+        if (restaurante_id != 0 && usuario_email != null) {
+            if (numStars != 0) {
+                if (opinion.equals("") || opinion.length() < 5) {
+                    Toast.makeText(this, "Mínimo 5 caracteres", Toast.LENGTH_LONG);
+                } else {
+                    new SendOpinion().execute(String.valueOf(restaurante_id), usuario_email, String.valueOf(numStars), opinion);
+                }
+            } else {
+                Toast.makeText(this, "Seleccione un número de estrellas.", Toast.LENGTH_LONG);
+            }
+        } else {
+            Toast.makeText(this, "Error interno", Toast.LENGTH_LONG);
+        }
+    }
+
     // Show a message if the opinion list is empty
     public void showEmptyListMessage() {
         Toast.makeText(this, "Lista de opiniones vacia!", Toast.LENGTH_LONG).show();
+    }
+
+    // Show a message if the opinion is created properly
+    public void showOpinionCreatedMessage(int success) {
+        if (success == 1) {
+            Toast.makeText(this, "Opinión enviada con éxito", Toast.LENGTH_LONG);
+        } else {
+            Toast.makeText(this, "Intentelo más tarde", Toast.LENGTH_LONG);
+        }
     }
 
     /**
@@ -112,6 +148,44 @@ public class OpinionActivity extends AppCompatActivity {
                 ListOpinionAdapter customAdapter = new ListOpinionAdapter(getApplication(), R.layout.activity_opinion_item, result);
                 lv.setAdapter(customAdapter);
             }
+        }
+    }
+
+    /**
+     * Background Async Task to send a restaurant opinion by making HTTP Request
+     */
+    private class SendOpinion extends AsyncTask<String, Void, String> {
+
+        protected String doInBackground(String... args) {
+            // Building Parameters
+            List<Pair<String, String>> params = new ArrayList<Pair<String, String>>();
+            params.add(new Pair<String, String>(RESTAURANTE_ID, args[0]));
+            params.add(new Pair<String, String>(USUARIO_EMAIL, args[0]));
+            params.add(new Pair<String, String>(RESTAURANTE_ESTRELLAS, args[0]));
+            params.add(new Pair<String, String>(RESTAURANTE_OPINION, args[0]));
+
+            // Getting JSON string from URL
+            JSONObject json = jParser.makeHttpRequest(SET_OPINION, params);
+
+            int success = -1;
+
+            try {
+                // Checking for SUCCESS TAG
+                success = json.getInt(TAG_SUCCESS);
+
+                return String.valueOf(success);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        /**
+         * After completing background task update the opinion ListView
+         **/
+        protected void onPostExecute(String result) {
+            showOpinionCreatedMessage(Integer.parseInt(result));
         }
     }
 }
