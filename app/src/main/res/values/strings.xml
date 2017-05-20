@@ -4,7 +4,7 @@
     <!-- LoginLayout -->
     <string name="logIniciarSesion">Iniciar Sesión</string>
     <string name="logRegistro">Registro</string>
-    <string name="logNombreUsuario">Nombre usuario</string>
+    <string name="logNombreUsuario">Nombre username</string>
     <string name="logPassword">Contraseña</string>
     <string name="logErrorLogin">Usuario y/o contraseña incorrectos</string>
 
@@ -35,7 +35,7 @@
     <string name="resButtonOpiniones">Opiniones</string>
     <string name="resButtonProductos">Oferta</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
+    <!-- My Account Fragment -->
     <string name="miNombre">Nombre</string>
     <string name="miApellido">Apellido</string>
     <string name="miTelefono">Telefono</string>
@@ -48,6 +48,10 @@
     <string name="addDialogTitle">Añadir favorito</string>
     <string name="ok">Aceptar</string>
     <string name="cancel">Cancelar</string>
+
+    <!-- Opinion Activity -->
+    <string name="opEnviarOpinion">Enviar opinión</string>
+    <string name="opOpiniones">Opiniones</string>
 
     <!-- -URL Server -->
     <string name="urlServer">http://192.168.0.14/proyecto/aComerAndroid/</string>

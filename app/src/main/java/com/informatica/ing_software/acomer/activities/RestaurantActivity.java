@@ -1,5 +1,6 @@
-package com.informatica.ing_software.acomer;
+package com.informatica.ing_software.acomer.activities;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.util.Pair;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.informatica.ing_software.acomer.R;
 import com.informatica.ing_software.acomer.json.JSONParser;
 import com.informatica.ing_software.acomer.objects.Restaurante;
 
@@ -25,7 +27,7 @@ public class RestaurantActivity extends AppCompatActivity {
     private final String TAG_SUCCESS = "success";
     private final String TAG_RESTAURANTS = "restaurantes";
     // URL to get favorites restaurants
-    //private final String USUARIOS_FAVORITOS = "http://amaterasu.unileon.es/benten/aComerAndroid/get_restaurantes.php";
+    //private final String GET_RESTAURANT = "http://amaterasu.unileon.es/benten/aComerAndroid/get_restaurantes.php";
     private final String GET_RESTAURANT = "http://192.168.0.14/proyecto/aComerAndroid/get_restaurantes.php";
     // Creating JSON Parser object
     private JSONParser jParser = new JSONParser();
@@ -56,13 +58,13 @@ public class RestaurantActivity extends AppCompatActivity {
 
     // Abrimos la activity de Opiniones al pulsar el boton "Opiniones"
     public void mostrarOpiniones(View view) {
-// Create a new intent
-// Intent intent = new Intent(this, OpinionesActivity.class);
-// Send the username and the restaurant id to the Restaurant Activity
-// intent.putExtra(RESTAURANTE_ID, restaurante_id);
-// intent.putExtra(USUARIO_EMAIL, usuario_email);
-// Start Restaurant Activity
-// startActivity(intent);
+        // Create a new intent
+        Intent intent = new Intent(this, OpinionActivity.class);
+        // Send the username and the restaurant id to the Restaurant Activity
+        intent.putExtra(RESTAURANTE_ID, restaurante_id);
+        intent.putExtra(USUARIO_EMAIL, usuario_email);
+        // Start Restaurant Activity
+        startActivity(intent);
     }
 
     private void updateUI(Restaurante restaurante) {
@@ -89,7 +91,7 @@ public class RestaurantActivity extends AppCompatActivity {
         protected Restaurante doInBackground(String... args) {
             // Building Parameters
             List<Pair<String, String>> params = new ArrayList<Pair<String, String>>();
-            params.add(new Pair<String, String>("id_restaurante", args[0]));
+            params.add(new Pair<String, String>(RESTAURANTE_ID, args[0]));
 
             // Getting JSON string from URL
             JSONObject json = jParser.makeHttpRequest(GET_RESTAURANT, params);
@@ -126,7 +128,7 @@ public class RestaurantActivity extends AppCompatActivity {
         }
 
         /**
-         * After completing background task Dismiss the progress dialog
+         * After completing background task update the Restaurant UI
          **/
         protected void onPostExecute(Restaurante restaurante) {
             updateUI(restaurante);

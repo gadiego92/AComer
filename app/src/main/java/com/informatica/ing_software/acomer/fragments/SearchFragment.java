@@ -17,7 +17,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.informatica.ing_software.acomer.R;
-import com.informatica.ing_software.acomer.RestaurantActivity;
+import com.informatica.ing_software.acomer.activities.RestaurantActivity;
 import com.informatica.ing_software.acomer.adapters.ListSearchAdapter;
 import com.informatica.ing_software.acomer.json.JSONParser;
 import com.informatica.ing_software.acomer.objects.Restaurante;
@@ -245,7 +245,7 @@ public class SearchFragment extends Fragment {
         }
 
         /**
-         * After completing background task Dismiss the progress dialog
+         * After completing background task update the ListView
          **/
         protected void onPostExecute(List<Restaurante> result) {
             // seleccionamos el listView
@@ -286,7 +286,7 @@ public class SearchFragment extends Fragment {
         }
 
         /**
-         * After completing background task Dismiss the progress dialog
+         * After completing background task show a message
          **/
         protected void onPostExecute(String result) {
             // Show a message after delete

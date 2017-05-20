@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.informatica.ing_software.acomer.activities.OpinionActivity"
+    android:padding="7dp">
+
+    <LinearLayout
+        android:id="@+id/aOpinionTopLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/aOpinionTextViewTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/opOpiniones" />
+
+        <LinearLayout
+            android:id="@+id/aOpinionTopLinearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <RatingBar
+                android:id="@+id/aOpinionRatingBarOpinion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="3"
+                android:stepSize="1"/>
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/aOpinionEditTextWriteOpinion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:maxLength="40"
+            android:hint="Escriba aquí su opinión..."/>
+
+        <Button
+            android:id="@+id/aOpinionButtonSendOpinion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/opEnviarOpinion" />
+
+    </LinearLayout>
+
+
+    <ListView
+        android:id="@+id/aOpinionListViewOpinion"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

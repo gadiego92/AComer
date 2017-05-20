@@ -1,5 +1,5 @@
 <?php
-/* El siguiente código creará un nuevo usuario en la tabla de usuarios
+/* El siguiente código creará un nuevo username en la tabla de usuarios
  * Los detalles serán leidos mediante un HTTP Request
  */
  

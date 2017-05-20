@@ -12,8 +12,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.informatica.ing_software.acomer.HelpActivity;
-import com.informatica.ing_software.acomer.HelpConstants;
+import com.informatica.ing_software.acomer.activities.HelpActivity;
+import com.informatica.ing_software.acomer.activities.HelpConstants;
 import com.informatica.ing_software.acomer.R;
 
 /**

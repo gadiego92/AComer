@@ -1,5 +1,5 @@
 <?php
-/* El siguiente código eliminará un restaurantes favorito del usuario actual
+/* El siguiente código eliminará un restaurantes favorito del username actual
  * Los detalles serán leidos mediante un HTTP Request
  */
  
@@ -16,12 +16,12 @@ if (isset($_POST['usuario_email']) && !empty($_POST['usuario_email'])
 	mysqli_select_db($con, DB_DATABASE);
 
 	$email = $_POST['usuario_email'];
-	$id_restaurante = $_POST['restaurante_id'];
-	$fecha = date("Y-m-d H:i:s");
+	$restaurant_id = $_POST['restaurante_id'];
+	$date = date("Y-m-d H:i:s");
 	
 	// delete a favorite
 	// sql to delete a record
-	$sql = "INSERT INTO FAVORITOS VALUES('$email', '$id_restaurante', '$fecha')";
+	$sql = "INSERT INTO FAVORITOS VALUES('$email', '$restaurant_id', '$date')";
 	
 	if (mysqli_query($con, $sql)) {
 		// success

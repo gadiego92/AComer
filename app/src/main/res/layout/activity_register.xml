@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.informatica.ing_software.acomer.RegisterActivity">
+    tools:context="com.informatica.ing_software.acomer.activities.RegisterActivity">
 
     <TextView
         android:id="@+id/aRegisterTextViewTitulo"
@@ -38,7 +38,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="25dp">
+            android:padding="25dp"
+            android:focusableInTouchMode="true">
 
             <TextView
                 android:id="@+id/aRegisterTextViewEmail"

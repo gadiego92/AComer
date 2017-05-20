@@ -7,42 +7,39 @@
 $response = array();
  
 // check for required fields
-if (isset($_POST['email']) && !empty($_POST['email'])) {
+if (isset($_POST['restaurante_id']) && !empty($_POST['restaurante_id'])) {
 	include('../android_connect/db_connect.php');	
 	connect($con);
 	mysqli_set_charset($con, "utf8");
 	mysqli_select_db($con, DB_DATABASE);
 
-	$email = $_POST['email'];
+	$id = $_POST['restaurante_id'];
 	
 	// get all favorites from a given user
+	// SQL to select the opinions by restaurant id
+	$sql = "SELECT restaurante_id, usuario_email, opinion, fecha_opinion, valoracion"
+		. " FROM Opiniones"
+		. " WHERE restaurante_id='$id'"
+		. " AND revisar='N'";
 	
-	//$result = mysqli_query($con, "SELECT Favoritos.restaurante_id, Restaurantes.nombre"
-	$result = mysqli_query($con, "SELECT Restaurantes.restaurant_id, Restaurantes.nombre,"
-		. " Restaurantes.ciudad, Restaurantes.provincia, Restaurantes.telefono, Restaurantes.tipo_cocina,"
-		. " Restaurantes.valoracion"
-		. " FROM Favoritos, Restaurantes"
-		. "	WHERE Favoritos.restaurante_id = Restaurantes.restaurant_id"
-		. " AND Favoritos.usuario_email='$email'"
-		. " ORDER BY Favoritos.fecha_favorito DESC");
+	$result = mysqli_query($con, $sql);
  
 	// comprobamos que el resultado no es vacio
 	if(mysqli_num_rows($result) > 0) {
 		// nodo restaurantes
-		$response['restaurantes'] = array();
+		$response['opiniones'] = array();
 		
 		while($row = mysqli_fetch_array($result)) {
 			// array temporal para cada uno de los restaurantes
-			$restaurante = array();
-			$restaurante['id'] = $row['restaurant_id'];
-			$restaurante['nm'] = $row['nombre'];
-			$restaurante['cd'] = $row['ciudad'] . ' (' . $row['provincia'] . ')';
-			$restaurante['tl'] = $row['telefono'];
-			$restaurante['cn'] = $row['tipo_cocina'];
-			$restaurante['vl'] = $row['valoracion'];
+			$opinion = array();
+			$opinion['id'] = $row['restaurante_id'];
+			$opinion['us'] = $row['usuario_email'];
+			$opinion['da'] = $row['fecha_opinion'];
+			$opinion['op'] = $row['opinion'];
+			$opinion['vl'] = $row['valoracion'];
 			
 			// push cada restaurante en el array final
-			array_push($response['restaurantes'], $restaurante);
+			array_push($response['opiniones'], $opinion);
 		}
 		
 		// success

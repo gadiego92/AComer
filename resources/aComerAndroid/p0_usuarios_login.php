@@ -1,5 +1,5 @@
 <?php
-/* El siguiente código logeará a un usuario
+/* El siguiente código logeará a un username
  * Los detalles serán leidos mediante un HTTP Request
  */
  

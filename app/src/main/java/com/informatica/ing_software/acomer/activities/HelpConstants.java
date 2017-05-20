@@ -1,4 +1,4 @@
-package com.informatica.ing_software.acomer;
+package com.informatica.ing_software.acomer.activities;
 
 /**
  * Created by Diego on 28/01/2017.

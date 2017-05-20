@@ -1,4 +1,4 @@
-package com.informatica.ing_software.acomer;
+package com.informatica.ing_software.acomer.activities;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import com.informatica.ing_software.acomer.R;
 import com.informatica.ing_software.acomer.fragments.FavoriteFragment;
 import com.informatica.ing_software.acomer.fragments.HelpFragment;
 import com.informatica.ing_software.acomer.fragments.MyAccountFragment;

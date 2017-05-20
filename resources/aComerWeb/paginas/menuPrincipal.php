@@ -42,7 +42,7 @@
 		
 		<main id="main">
 			<?php
-				// El siguiente código logeará a un usuario
+				// El siguiente código logeará a un username
 
 				session_start();
 				
@@ -161,7 +161,7 @@
 												
 												echo '<div class="form-group">';
 												// mysql inserting a new row
-												$result = mysqli_query($con, "SELECT id_restaurante, nombre FROM Restaurantes WHERE usuario_email='" . $_SESSION['email'] . "'");
+												$result = mysqli_query($con, "SELECT restaurant_id, nombre FROM Restaurantes WHERE usuario_email='" . $_SESSION['email'] . "'");
 		
 												// check if row inserted or not
 												if ($result) {

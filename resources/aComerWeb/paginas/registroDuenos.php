@@ -10,7 +10,7 @@
 		
 		<main id="main">
 			<?php
-				// El siguiente código creará un nuevo usuario en la tabla de usuarios
+				// El siguiente código creará un nuevo username en la tabla de usuarios
 				 
 				// check for required fields
 				if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['tipo_usuario']) &&
@@ -72,7 +72,7 @@
 					echo '<p>EXITO. Usuario creado.</p>';
 					echo '<a href="../index.html">Iniciar Sesión</a>';
 				} else {
-					echo '<p>ERROR. El usuario no ha podido crearse.</p>';
+					echo '<p>ERROR. El username no ha podido crearse.</p>';
 					echo '<a href="../index.html">Reintentar registro</a>';
 				}
 			?>

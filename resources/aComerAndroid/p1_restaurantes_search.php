@@ -11,7 +11,6 @@ connect($con);
 mysqli_set_charset($con, "utf8");
 mysqli_select_db($con, DB_DATABASE);
 
-
 // get all favorites from a given user
 $result = mysqli_query($con, "SELECT id_restaurante, nombre, ciudad, provincia, telefono, tipo_cocina, valoracion"
 	. " FROM Restaurantes"

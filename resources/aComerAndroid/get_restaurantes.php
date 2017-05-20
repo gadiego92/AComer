@@ -7,13 +7,13 @@
 $response = array();
  
 // check for required fields
-if (isset($_POST['id_restaurante']) && !empty($_POST['id_restaurante'])) {
+if (isset($_POST['restaurante_id']) && !empty($_POST['restaurante_id'])) {
 	include('../android_connect/db_connect.php');	
 	connect($con);
 	mysqli_set_charset($con, "utf8");
 	mysqli_select_db($con, DB_DATABASE);
 
-	$id = $_POST['id_restaurante'];
+	$id = $_POST['restaurante_id'];
 	
 	// get a restaurante by the ID
 	$result = mysqli_query($con, "SELECT id_restaurante, nombre,"

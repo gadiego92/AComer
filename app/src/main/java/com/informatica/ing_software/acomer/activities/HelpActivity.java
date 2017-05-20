@@ -1,8 +1,10 @@
-package com.informatica.ing_software.acomer;
+package com.informatica.ing_software.acomer.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
+
+import com.informatica.ing_software.acomer.R;
 
 public class HelpActivity extends AppCompatActivity {
 

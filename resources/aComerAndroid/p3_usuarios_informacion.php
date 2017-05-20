@@ -1,5 +1,5 @@
 <?php
-/* El siguiente código devolverá la informacion personal de un usuario logeado
+/* El siguiente código devolverá la informacion personal de un username logeado
  * Los detalles serán leidos mediante un HTTP Request
  */
  
@@ -28,19 +28,19 @@ if (isset($_POST['email'])) {
 			// determinar el número de filas del resultado
 			if (mysqli_num_rows($result) == 1) {
 				// nodo restaurantes
-				$response['usuario'] = array();
+				$response['username'] = array();
 				
 				$row = mysqli_fetch_array($result);
 
 				// array temporal para cada uno de los restaurantes
-				$usuario = array();
-				$usuario['nm'] = $row['nombre'];
-				$usuario['ap'] = $row['apellido'];
-				$usuario['tl'] = $row['telefono'];
-				$usuario['em'] = $row['email'];
+				$username = array();
+				$username['nm'] = $row['nombre'];
+				$username['ap'] = $row['apellido'];
+				$username['tl'] = $row['telefono'];
+				$username['em'] = $row['email'];
 				
 				// push cada restaurante en el array final
-				array_push($response['usuario'], $usuario);
+				array_push($response['username'], $username);
 				
 				// success
 				$response['success'] = 1;

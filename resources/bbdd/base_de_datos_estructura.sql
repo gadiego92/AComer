@@ -62,10 +62,12 @@ CREATE TABLE Favoritos (
 
 # Tabla Opiniones. Opiniones que los Usuarios escriben sobre los Restaurantes
 CREATE TABLE Opiniones (
-	usuario_email VARCHAR(64) NOT NULL,
 	restaurante_id INTEGER NOT NULL,
+	usuario_email VARCHAR(64) NOT NULL,
 	opinion VARCHAR(256) NOT NULL,
 	fecha_opinion DATETIME NOT NULL,
+	valoracion CHAR(1) NOT NULL,
+	revisar CHAR(1) NOT NULL,
 	PRIMARY KEY (usuario_email, restaurante_id),
 	FOREIGN KEY (usuario_email)
 	REFERENCES Usuarios (email) ON DELETE CASCADE ON UPDATE CASCADE,

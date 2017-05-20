@@ -1,4 +1,4 @@
-package com.informatica.ing_software.acomer;
+package com.informatica.ing_software.acomer.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.informatica.ing_software.acomer.R;
 import com.informatica.ing_software.acomer.json.JSONParser;
 
 import org.json.JSONException;
