@@ -55,7 +55,7 @@ public class ListSearchAdapter extends ArrayAdapter<Restaurante> {
             }
 
             if (textCocina != null) {
-                textCocina.setText("Cocina " + restaurante.getTipo_cocina());
+                textCocina.setText(getContext().getString(R.string.resCocina) + ": " + restaurante.getTipo_cocina());
             }
 
             if (ratingValoracion != null) {

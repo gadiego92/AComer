@@ -41,8 +41,9 @@ public class MyAccountFragment extends Fragment {
     private final String USUARIOS_INFORMACION = "http://192.168.0.14/proyecto/aComerAndroid/p3_usuarios_informacion.php";
     // Creating JSON Parser object
     private JSONParser jParser = new JSONParser();
-    private String usuario_email;
     private OnFragmentInteractionListener mListener;
+    // Extras
+    private String usuario_email;
 
     public MyAccountFragment() {
         // Required empty public constructor
@@ -122,9 +123,9 @@ public class MyAccountFragment extends Fragment {
     }
 
     /**
-     * Background Async Task to load all favorite restaurants by making HTTP Request
+     * Background Async Task to load user information by making HTTP Request
      */
-    class GetInformacionPersonal extends AsyncTask<String, Void, Usuario> {
+    private class GetInformacionPersonal extends AsyncTask<String, Void, Usuario> {
 
         protected Usuario doInBackground(String... args) {
             // Building Parameters
@@ -151,9 +152,7 @@ public class MyAccountFragment extends Fragment {
                     String tl = ((JSONObject) jsonArray.get(0)).getString("tl");    // Telefono
                     String em = ((JSONObject) jsonArray.get(0)).getString("em");    // Email
 
-                    Usuario user = new Usuario(nm, ap, tl, em);
-
-                    return user;
+                    return new Usuario(nm, ap, tl, em);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

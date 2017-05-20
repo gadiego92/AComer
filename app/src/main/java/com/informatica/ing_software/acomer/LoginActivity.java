@@ -21,13 +21,15 @@ import java.util.List;
 public class LoginActivity extends AppCompatActivity {
     // JSON Node names
     private final String TAG_SUCCESS = "success";
-    // url to login
+    // URL to login
     // private static String USUARIOS_LOGIN = "http://amaterasu.unileon.es/benten/aComerAndroid/p0_usuarios_login.php";
     private String USUARIOS_LOGIN = "http://192.168.0.14/proyecto/aComerAndroid/p0_usuarios_login.php";
-    // Progress Login Dialog
-    private ProgressDialog pDialog;
     // Creating JSON Parser object
     private JSONParser jParser = new JSONParser();
+    // Tipo de Usuario para el registro (C - Cliente)
+    private final String TIPO_USUARIO_CLIENTE = "C";
+    // Progress Login Dialog
+    private ProgressDialog pDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
     /**
      * Background Async Task to try login by making HTTP Request
      */
-    class IniciarSesion extends AsyncTask<String, String, String> {
+    private class IniciarSesion extends AsyncTask<String, String, String> {
         String usuario_email;
 
         /**
@@ -89,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
             List<Pair<String, String>> params = new ArrayList<Pair<String, String>>();
             params.add(new Pair<String, String>("email", args[0]));
             params.add(new Pair<String, String>("password", args[1]));
-            params.add(new Pair<String, String>("tipo_usuario", "C"));
+            params.add(new Pair<String, String>("tipo_usuario", TIPO_USUARIO_CLIENTE));
 
             int success = 0;
             // Guardamos el email para pasarlo a las siguientes activities

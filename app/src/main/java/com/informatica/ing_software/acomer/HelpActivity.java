@@ -1,6 +1,5 @@
 package com.informatica.ing_software.acomer;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
@@ -12,7 +11,6 @@ public class HelpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help);
 
-        Intent searchIntent = getIntent();
         int preguntaRespuesta = getIntent().getIntExtra("posicion", 0);
 
         TextView textViewPregunta = (TextView) findViewById(R.id.aHelpTextViewPregunta);

@@ -35,6 +35,7 @@ public class JSONParser {
     public JSONObject makeHttpRequest(String link, List<Pair<String, String>> params) {
 
         // Making HTTP request
+        // Codificar varaibles POST
         try {
             String select = "";
             String data = "";
@@ -48,10 +49,7 @@ public class JSONParser {
                 }
             }
 
-            // Codificar varaibles POST
-            // String data = URLEncoder.encode("select", "UTF-8") + "=" + URLEncoder.encode(select, "UTF-8");
-            //data  += URLEncoder.encode("username", "UTF-8") + "=" + URLEncoder.encode(select, "UTF-8");
-            //data += "&" + URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(select, "UTF-8");
+            // URL
             URL url = new URL(link);
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();

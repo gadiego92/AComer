@@ -12,6 +12,7 @@ public class HelpConstants {
             "Restaurante",
             "¿Cómo buscar un restaurante?",
             "¿Cómo registrarse si eres un Restaurante?"};
+    
     public static final String[] RESPUESTAS = new String[]{"Los últimos restaurantes añadidos a la aplicación serán" +
             " mostrados en una lista. También podrás buscar restaurantes en la barra de búsqueda. También podrás abrir" +
             " un restaurante en concreto para ver sus detalles.",

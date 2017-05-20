@@ -1,6 +1,5 @@
 package com.informatica.ing_software.acomer;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.util.Pair;
@@ -77,8 +76,8 @@ public class RestaurantActivity extends AppCompatActivity {
 
         nombreTextView.setText(restaurante.getNombre());
         ciudadTextView.setText(restaurante.getCiudad());
-        tipoCocinaTextView.setText(R.string.resCocina + restaurante.getTipo_cocina());
-        telefonoTextView.setText(R.string.resCocina + restaurante.getTelefono());
+        tipoCocinaTextView.setText(getString(R.string.resCocina) + ": " + restaurante.getTipo_cocina());
+        telefonoTextView.setText(getString(R.string.resCocina) + ": " + restaurante.getTelefono());
         valoracionRatingBar.setRating(Float.parseFloat(restaurante.getValoracion()));
     }
 
@@ -108,16 +107,14 @@ public class RestaurantActivity extends AppCompatActivity {
                     // Converto to JSONArray
                     JSONArray jsonArray = new JSONArray(restaurantes);
 
-                    //for (int i = 0; i < jsonArray.length(); i++) {
-                        int id = Integer.parseInt(((JSONObject) jsonArray.get(0)).getString("id"));     // Id
-                        String nm = ((JSONObject) jsonArray.get(0)).getString("nm");                    // Nombre
-                        String cd = ((JSONObject) jsonArray.get(0)).getString("cd");                    // Ciudad
-                        String tl = ((JSONObject) jsonArray.get(0)).getString("tl");                    // Telefono
-                        String cn = ((JSONObject) jsonArray.get(0)).getString("cn");                    // Cocina
-                        String vl = ((JSONObject) jsonArray.get(0)).getString("vl");                    // Valoracion
+                    int id = Integer.parseInt(((JSONObject) jsonArray.get(0)).getString("id"));     // Id
+                    String nm = ((JSONObject) jsonArray.get(0)).getString("nm");                    // Nombre
+                    String cd = ((JSONObject) jsonArray.get(0)).getString("cd");                    // Ciudad
+                    String tl = ((JSONObject) jsonArray.get(0)).getString("tl");                    // Telefono
+                    String cn = ((JSONObject) jsonArray.get(0)).getString("cn");                    // Cocina
+                    String vl = ((JSONObject) jsonArray.get(0)).getString("vl");                    // Valoracion
 
-                        restaurante.setValues(id, nm, cd, tl, cn, vl);
-                    //}
+                    restaurante.setValues(id, nm, cd, tl, cn, vl);
                 }
 
                 return restaurante;

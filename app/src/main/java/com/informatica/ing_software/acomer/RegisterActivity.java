@@ -21,15 +21,15 @@ import java.util.List;
 public class RegisterActivity extends AppCompatActivity {
     // JSON Node names
     private final String TAG_SUCCESS = "success";
-    // url to register
+    // URL to register
     // private static String USUARIOS_REGISTRO = "http://amaterasu.unileon.es/benten/aComerAndroid/p0_usuarios_registro.php";
     private final String USUARIOS_REGISTRO = "http://192.168.0.14/proyecto/aComerAndroid/p0_usuarios_registro.php";
+    // Creating JSON Parser object
+    private JSONParser jParser = new JSONParser();
     // Tipo de Usuario para el registro (C - Cliente)
     private final String TIPO_USUARIO_CLIENTE = "C";
     // Progress Register Dialog
     private ProgressDialog pDialog;
-    // Creating JSON Parser object
-    private JSONParser jParser = new JSONParser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,9 +78,7 @@ public class RegisterActivity extends AppCompatActivity {
     /**
      * Background Async Task to try register by making HTTP Request
      */
-    class Registro extends AsyncTask<String, String, String> {
-        String usuario_email;
-
+    private class Registro extends AsyncTask<String, String, String> {
         /**
          * Before starting background thread Show Progress Dialog
          */
@@ -102,7 +100,7 @@ public class RegisterActivity extends AppCompatActivity {
             List<Pair<String, String>> params = new ArrayList<Pair<String, String>>();
             params.add(new Pair<String, String>("email", args[0]));
             params.add(new Pair<String, String>("password", args[1]));
-            params.add(new Pair<String, String>("tipo_usuario", "C"));
+            params.add(new Pair<String, String>("tipo_usuario", TIPO_USUARIO_CLIENTE));
             params.add(new Pair<String, String>("nombre", args[2]));
             params.add(new Pair<String, String>("apellido", args[3]));
             params.add(new Pair<String, String>("fecha_nacimiento", args[4]));
@@ -112,7 +110,7 @@ public class RegisterActivity extends AppCompatActivity {
             params.add(new Pair<String, String>("pais", args[8]));
             params.add(new Pair<String, String>("codigo_postal", args[9]));
 
-            int success = 0;
+            int success = -1;
 
             // getting JSON string from URL
             JSONObject json = jParser.makeHttpRequest(USUARIOS_REGISTRO, params);

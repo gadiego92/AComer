@@ -120,7 +120,7 @@ public class FavoriteFragment extends Fragment {
                 // Add the icon
                 builder.setIcon(android.R.drawable.ic_dialog_alert);
                 // Add the title
-                builder.setTitle(R.string.dialogTitle);
+                builder.setTitle(R.string.deleteDialogTitle);
                 // Add the message
                 builder.setMessage("¿Desea eliminar el restaurante '"
                         + ((Restaurante) adapterView.getAdapter().getItem(position)).getNombre()
@@ -133,6 +133,9 @@ public class FavoriteFragment extends Fragment {
                     public void onClick(DialogInterface dialog, int id) {
                         // Delete the favourite restaurant from the database
                         new BorrarFavorito().execute(usuario_email, restaurante_id);
+
+                        // Get favorite Restaurants
+                        new GetFavoritos().execute(usuario_email);
                     }
                 });
 
@@ -166,12 +169,12 @@ public class FavoriteFragment extends Fragment {
         Toast.makeText(getActivity(), "Lista de favoritos vacia!", Toast.LENGTH_LONG).show();
     }
 
-    // Show a message when a favourite restaurante i deleted
+    // Show a message when a favourite restaurante is deleted
     public void showFavDeletedMessage(int success) {
-        if(success == 1) {
+        if (success == 1) {
             Toast.makeText(getActivity(), "Favorito eliminado con exito!", Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(getActivity(), "Error eliminadno el favorito!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), "Error eliminado el favorito!", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -263,18 +266,14 @@ public class FavoriteFragment extends Fragment {
             ListFavouriteAdapter customAdapter = new ListFavouriteAdapter(getActivity(), R.layout.fragment_favorite_item, result);
             lv.setAdapter(customAdapter);
 
-            if(result.size() == 0) {
+            if (result.size() == 0) {
                 showEmptyListMessage();
             }
         }
     }
 
-/////////////////////////////////////////
-// Probar esto y el codigo PHP
-/////////////////////////////////////////
-
     /**
-     * Background Async Task to delete a favorite restaurants by making HTTP Request
+     * Background Async Task to delete a favorite restaurant by making HTTP Request
      */
     private class BorrarFavorito extends AsyncTask<String, Void, String> {
 

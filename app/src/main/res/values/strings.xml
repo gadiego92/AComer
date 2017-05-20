@@ -30,8 +30,8 @@
     <string name="regRegistro">Registrarse</string>
 
     <!-- RestaurantLayout -->
-    <string name="resContacto">Contacto: </string>
-    <string name="resCocina">Cocina: </string>
+    <string name="resContacto">Contacto</string>
+    <string name="resCocina">Cocina</string>
     <string name="resButtonOpiniones">Opiniones</string>
     <string name="resButtonProductos">Oferta</string>
 
@@ -43,8 +43,9 @@
     <string name="miButtonEditarDatos">Editar perfil</string>
     <string name="miButtonCerrarSesion">Cerrar sesión</string>
 
-    <!-- Favourite deletion -->
-    <string name="dialogTitle">Eliminar favorito</string>
+    <!-- Favourite addition or deletion -->
+    <string name="deleteDialogTitle">Eliminar favorito</string>
+    <string name="addDialogTitle">Añadir favorito</string>
     <string name="ok">Aceptar</string>
     <string name="cancel">Cancelar</string>
 

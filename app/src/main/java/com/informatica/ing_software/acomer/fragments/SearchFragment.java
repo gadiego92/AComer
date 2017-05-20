@@ -1,17 +1,20 @@
 package com.informatica.ing_software.acomer.fragments;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.util.Pair;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.informatica.ing_software.acomer.R;
 import com.informatica.ing_software.acomer.RestaurantActivity;
@@ -43,7 +46,9 @@ public class SearchFragment extends Fragment {
     private final String TAG_RESTAURANTS = "restaurantes";
     // URL to get favorites restaurants
     //private static String RESTAURANTES_SEARCH = "http://amaterasu.unileon.es/benten/aComerAndroid/p1_restaurantes_search.php";
+    //private static String ADD_FAVORITOS = "http://amaterasu.unileon.es/benten/aComerAndroid/p1_add_favorito.php";
     private final String RESTAURANTES_SEARCH = "http://192.168.0.14/proyecto/aComerAndroid/p1_restaurantes_search.php";
+    private final String ADD_FAVORITOS = "http://192.168.0.14/proyecto/aComerAndroid/p1_add_favorito.php";
     // Creating JSON Parser object
     private JSONParser jParser = new JSONParser();
     private OnFragmentInteractionListener mListener;
@@ -58,6 +63,7 @@ public class SearchFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
+     * @param email User's email.
      * @return A new instance of fragment SearchFragment.
      */
     public static SearchFragment newInstance(String email) {
@@ -87,8 +93,10 @@ public class SearchFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search, container, false);
+        // Get the listView
         ListView lv = (ListView) view.findViewById(R.id.fSearchListViewSearch);
 
+        // Item Click Listener
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -103,6 +111,47 @@ public class SearchFragment extends Fragment {
             }
         });
 
+        // Item Long Click Listener
+        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long arg3) {
+                // Create the AlertDialog
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+                // Add the icon
+                builder.setIcon(android.R.drawable.ic_dialog_alert);
+                // Add the title
+                builder.setTitle(R.string.addDialogTitle);
+                // Add the message
+                builder.setMessage("¿Desea añadir el restaurante '"
+                        + ((Restaurante) adapterView.getAdapter().getItem(position)).getNombre()
+                        + "' a su lista de favoritos?");
+
+                final String restaurante_id = String.valueOf(((Restaurante) adapterView.getAdapter().getItem(position)).getId());
+
+                // Add the positive button
+                builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // Add the favourite restaurant from the database
+                        new AddFavorito().execute(usuario_email, restaurante_id);
+                    }
+                });
+
+                // Add the negative button
+                builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // Do nothing
+                    }
+                });
+
+                // Show the AlertDialog
+                builder.show();
+
+                // To avoid onItemClick event after onItemLongClick
+                return true;
+            }
+        });
+
         // return inflate the layout for this fragment
         return view;
     }
@@ -110,6 +159,15 @@ public class SearchFragment extends Fragment {
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
+        }
+    }
+
+    // Show a message when a favourite restaurante is added
+    public void showFavAddedMessage(int success) {
+        if (success == 1) {
+            Toast.makeText(getActivity(), "Favorito añadido con exito!", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getActivity(), "Error añadiendo el favorito!", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -145,9 +203,9 @@ public class SearchFragment extends Fragment {
     }
 
     /**
-     * Background Async Task to load last 20 restaurants by making HTTP Request
+     * Background Async Task to load last 20 restaurants added by making HTTP Request
      */
-    class GetRestaurants extends AsyncTask<String, Void, List<Restaurante>> {
+    private class GetRestaurants extends AsyncTask<String, Void, List<Restaurante>> {
 
         protected List<Restaurante> doInBackground(String... args) {
             // Getting JSON string from URL
@@ -196,6 +254,43 @@ public class SearchFragment extends Fragment {
             // cogemos los datos con el ListSearchAdapter y los mostramos
             ListSearchAdapter customAdapter = new ListSearchAdapter(getActivity(), R.layout.fragment_search_item, result);
             lv.setAdapter(customAdapter);
+        }
+    }
+
+    /**
+     * Background Async Task to add a favorite restaurant by making HTTP Request
+     */
+    private class AddFavorito extends AsyncTask<String, Void, String> {
+
+        protected String doInBackground(String... args) {
+            // Building Parameters
+            List<Pair<String, String>> params = new ArrayList<Pair<String, String>>();
+            params.add(new Pair<String, String>(USUARIO_EMAIL, args[0]));
+            params.add(new Pair<String, String>(RESTAURANTE_ID, args[1]));
+
+            // Getting JSON string from URL
+            JSONObject json = jParser.makeHttpRequest(ADD_FAVORITOS, params);
+
+            int success = -1;
+
+            try {
+                // Checking for SUCCESS TAG
+                success = json.getInt(TAG_SUCCESS);
+
+                return String.valueOf(success);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        /**
+         * After completing background task Dismiss the progress dialog
+         **/
+        protected void onPostExecute(String result) {
+            // Show a message after delete
+            showFavAddedMessage(Integer.parseInt(result));
         }
     }
 }
