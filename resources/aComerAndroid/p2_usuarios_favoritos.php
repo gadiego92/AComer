@@ -7,22 +7,22 @@
 $response = array();
  
 // check for required fields
-if (isset($_POST['email']) && !empty($_POST['email'])) {
+if (isset($_POST['usuario_email']) && !empty($_POST['usuario_email'])) {
 	include('../android_connect/db_connect.php');	
 	connect($con);
 	mysqli_set_charset($con, "utf8");
 	mysqli_select_db($con, DB_DATABASE);
 
-	$email = $_POST['email'];
+	$email = $_POST['usuario_email'];
 	
 	// get all favorites from a given user
 	
 	//$result = mysqli_query($con, "SELECT Favoritos.restaurante_id, Restaurantes.nombre"
-	$result = mysqli_query($con, "SELECT Restaurantes.restaurant_id, Restaurantes.nombre,"
+	$result = mysqli_query($con, "SELECT Restaurantes.id_restaurante, Restaurantes.nombre,"
 		. " Restaurantes.ciudad, Restaurantes.provincia, Restaurantes.telefono, Restaurantes.tipo_cocina,"
 		. " Restaurantes.valoracion"
 		. " FROM Favoritos, Restaurantes"
-		. "	WHERE Favoritos.restaurante_id = Restaurantes.restaurant_id"
+		. "	WHERE Favoritos.restaurante_id = Restaurantes.id_restaurante"
 		. " AND Favoritos.usuario_email='$email'"
 		. " ORDER BY Favoritos.fecha_favorito DESC");
  
@@ -34,7 +34,7 @@ if (isset($_POST['email']) && !empty($_POST['email'])) {
 		while($row = mysqli_fetch_array($result)) {
 			// array temporal para cada uno de los restaurantes
 			$restaurante = array();
-			$restaurante['id'] = $row['restaurant_id'];
+			$restaurante['id'] = $row['id_restaurante'];
 			$restaurante['nm'] = $row['nombre'];
 			$restaurante['cd'] = $row['ciudad'] . ' (' . $row['provincia'] . ')';
 			$restaurante['tl'] = $row['telefono'];

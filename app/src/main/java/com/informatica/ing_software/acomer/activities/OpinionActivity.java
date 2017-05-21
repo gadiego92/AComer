@@ -1,10 +1,12 @@
 package com.informatica.ing_software.acomer.activities;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RatingBar;
@@ -40,11 +42,14 @@ public class OpinionActivity extends AppCompatActivity {
     // Extras
     private int restaurante_id;
     private String usuario_email;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_opinion);
+
+        context = this;
 
         restaurante_id = getIntent().getIntExtra(RESTAURANTE_ID, 0);
         usuario_email = getIntent().getStringExtra(USUARIO_EMAIL);
@@ -57,35 +62,41 @@ public class OpinionActivity extends AppCompatActivity {
 
     // Enviar Opinion al pulsar el boton
     public void enviarOpinion(View view) {
+        Button button = (Button) view;
+        button.setEnabled(false);
         String opinion = ((EditText) findViewById(R.id.aOpinionEditTextWriteOpinion)).getText().toString().trim();
-        int numStars = ((RatingBar) findViewById(R.id.aOpinionRatingBarOpinion)).getNumStars();
+        int numStars = (int) ((RatingBar) findViewById(R.id.aOpinionRatingBarOpinion)).getRating();
 
         if (restaurante_id != 0 && usuario_email != null) {
             if (numStars != 0) {
-                if (opinion.equals("") || opinion.length() < 5) {
-                    Toast.makeText(this, "Mínimo 5 caracteres", Toast.LENGTH_LONG);
+                if (opinion.equals("") || opinion.length() < 4) {
+                    Toast.makeText(context, "Mínimo 5 caracteres", Toast.LENGTH_LONG).show();
                 } else {
                     new SendOpinion().execute(String.valueOf(restaurante_id), usuario_email, String.valueOf(numStars), opinion);
                 }
             } else {
-                Toast.makeText(this, "Seleccione un número de estrellas.", Toast.LENGTH_LONG);
+                Toast.makeText(context, "Seleccione un número de estrellas.", Toast.LENGTH_LONG).show();
             }
         } else {
-            Toast.makeText(this, "Error interno", Toast.LENGTH_LONG);
+            Toast.makeText(context, "Error interno", Toast.LENGTH_LONG).show();
         }
+
+        button.setEnabled(true);
     }
 
     // Show a message if the opinion list is empty
     public void showEmptyListMessage() {
-        Toast.makeText(this, "Lista de opiniones vacia!", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Lista de opiniones vacia!", Toast.LENGTH_LONG).show();
     }
 
     // Show a message if the opinion is created properly
     public void showOpinionCreatedMessage(int success) {
-        if (success == 1) {
-            Toast.makeText(this, "Opinión enviada con éxito", Toast.LENGTH_LONG);
-        } else {
-            Toast.makeText(this, "Intentelo más tarde", Toast.LENGTH_LONG);
+        if (success == 2) { // Update Opinion
+            Toast.makeText(getBaseContext(), "Opinión actualizada con éxito", Toast.LENGTH_LONG).show();
+        } else if (success == 1) {  // Insert Opinion
+            Toast.makeText(getBaseContext(), "Opinión enviada con éxito", Toast.LENGTH_LONG).show();
+        } else {    // Insert & Update Failed
+            Toast.makeText(getBaseContext(), "Intentelo más tarde", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -160,9 +171,9 @@ public class OpinionActivity extends AppCompatActivity {
             // Building Parameters
             List<Pair<String, String>> params = new ArrayList<Pair<String, String>>();
             params.add(new Pair<String, String>(RESTAURANTE_ID, args[0]));
-            params.add(new Pair<String, String>(USUARIO_EMAIL, args[0]));
-            params.add(new Pair<String, String>(RESTAURANTE_ESTRELLAS, args[0]));
-            params.add(new Pair<String, String>(RESTAURANTE_OPINION, args[0]));
+            params.add(new Pair<String, String>(USUARIO_EMAIL, args[1]));
+            params.add(new Pair<String, String>(RESTAURANTE_ESTRELLAS, args[2]));
+            params.add(new Pair<String, String>(RESTAURANTE_OPINION, args[3]));
 
             // Getting JSON string from URL
             JSONObject json = jParser.makeHttpRequest(SET_OPINION, params);

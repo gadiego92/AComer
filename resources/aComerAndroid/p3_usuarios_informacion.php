@@ -1,5 +1,5 @@
 <?php
-/* El siguiente código devolverá la informacion personal de un username logeado
+/* El siguiente código devolverá la informacion personal de un usuario logeado
  * Los detalles serán leidos mediante un HTTP Request
  */
  
@@ -8,15 +8,15 @@ $response = array();
 
 
 // check for required fields
-if (isset($_POST['email'])) {
-	if (!empty($_POST['email'])) {
+if (isset($_POST['usuario_email'])) {
+	if (!empty($_POST['usuario_email'])) {
 
 		include('../android_connect/db_connect.php');	
 		connect($con);
 		mysqli_set_charset($con, "utf8");
 		mysqli_select_db($con, DB_DATABASE);
 
-		$email = $_POST['email'];
+		$email = $_POST['usuario_email'];
 		
 		// get all favorites from a given user
 		$result = mysqli_query($con, "SELECT nombre, apellido, telefono, email"
@@ -28,19 +28,19 @@ if (isset($_POST['email'])) {
 			// determinar el número de filas del resultado
 			if (mysqli_num_rows($result) == 1) {
 				// nodo restaurantes
-				$response['username'] = array();
+				$response['usuario'] = array();
 				
 				$row = mysqli_fetch_array($result);
 
 				// array temporal para cada uno de los restaurantes
-				$username = array();
-				$username['nm'] = $row['nombre'];
-				$username['ap'] = $row['apellido'];
-				$username['tl'] = $row['telefono'];
-				$username['em'] = $row['email'];
+				$usuario = array();
+				$usuario['nm'] = $row['nombre'];
+				$usuario['ap'] = $row['apellido'];
+				$usuario['tl'] = $row['telefono'];
+				$usuario['em'] = $row['email'];
 				
 				// push cada restaurante en el array final
-				array_push($response['username'], $username);
+				array_push($response['usuario'], $usuario);
 				
 				// success
 				$response['success'] = 1;

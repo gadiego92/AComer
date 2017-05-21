@@ -217,7 +217,7 @@ public class FavoriteFragment extends Fragment {
         protected List<Restaurante> doInBackground(String... args) {
             // Building Parameters
             List<Pair<String, String>> params = new ArrayList<Pair<String, String>>();
-            params.add(new Pair<String, String>("email", args[0]));
+            params.add(new Pair<String, String>(USUARIO_EMAIL, args[0]));
 
             // Getting JSON string from URL
             JSONObject json = jParser.makeHttpRequest(USUARIOS_FAVORITOS, params);

@@ -49,10 +49,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:onClick="enviarOpinion"
             android:text="@string/opEnviarOpinion" />
 
     </LinearLayout>
-
 
     <ListView
         android:id="@+id/aOpinionListViewOpinion"

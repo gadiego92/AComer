@@ -29,7 +29,7 @@ if (isset($_POST['usuario_email']) && !empty($_POST['usuario_email'])
 	} else {
 		// failed to insert row
 		$response["success"] = 0;
-		$response["message"] = "No restaurants found";
+		$response["message"] = "Delete failed";
 	}
 	
 	// cerrar conexion
