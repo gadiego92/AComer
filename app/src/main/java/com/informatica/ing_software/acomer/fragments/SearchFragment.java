@@ -42,13 +42,15 @@ public class SearchFragment extends Fragment {
     // The fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String USUARIO_EMAIL = "usuario_email";
     private static final String RESTAURANTE_ID = "restaurante_id";
+    private static final String BUSQUEDA = "busqueda";
+    private static final String TIPO_BUSQUEDA = "tipo_busqueda";
     // JSON Node names
     private final String TAG_SUCCESS = "success";
     private final String TAG_RESTAURANTS = "restaurantes";
     // URL to get favorites restaurants
-    //private static String RESTAURANTES_SEARCH = "http://amaterasu.unileon.es/benten/aComerAndroid/p1_restaurantes_search.php";
+    //private static String LAST_RESTAURANTS_ADDED = "http://amaterasu.unileon.es/benten/aComerAndroid/p1_restaurantes_search.php";
     //private static String ADD_FAVORITOS = "http://amaterasu.unileon.es/benten/aComerAndroid/p1_add_favorito.php";
-    private final String RESTAURANTES_SEARCH = "http://192.168.0.14/proyecto/aComerAndroid/p1_restaurantes_search.php";
+    private final String RESTAURANTS_SEARCH = "http://192.168.0.14/proyecto/aComerAndroid/p1_restaurantes_search.php";
     private final String ADD_FAVORITOS = "http://192.168.0.14/proyecto/aComerAndroid/p1_add_favorito.php";
     // Creating JSON Parser object
     private JSONParser jParser = new JSONParser();
@@ -84,8 +86,8 @@ public class SearchFragment extends Fragment {
         if (getArguments() != null) {
             usuario_email = getArguments().getString(USUARIO_EMAIL);
 
-            // Get last 20 added Restaurants
-            new GetRestaurants().execute();
+            // Get last 20 added Restaurants (0)
+            new GetRestaurants().execute("0", "");
         }
     }
 
@@ -154,11 +156,23 @@ public class SearchFragment extends Fragment {
         });
 
         // Create a listener for the search bar
-        SearchView searchBar = (SearchView) view.findViewById(R.id.fSearchSearchView);
+        final SearchView searchBar = (SearchView) view.findViewById(R.id.fSearchSearchView);
         searchBar.setOnSearchClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+///////////////////////////////
+// PROBAR ESTO SI FUNCIONA
+///////////////////////////////
                 Toast.makeText(getActivity(), "Bien", Toast.LENGTH_LONG).show();
+
+                String query = searchBar.getQuery().toString().trim();
+
+                if (query.length() > 1) {
+                    // Get Restaurant Search (1)
+                    new GetRestaurants().execute("1", query);
+                } else {
+                    Toast.makeText(getActivity(), "Búsqueda demasiado corta", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -218,8 +232,13 @@ public class SearchFragment extends Fragment {
     private class GetRestaurants extends AsyncTask<String, Void, List<Restaurante>> {
 
         protected List<Restaurante> doInBackground(String... args) {
+            // Building Parameters
+            List<Pair<String, String>> params = new ArrayList<Pair<String, String>>();
+            params.add(new Pair<String, String>(TIPO_BUSQUEDA, args[0]));
+            params.add(new Pair<String, String>(BUSQUEDA, args[1]));
+
             // Getting JSON string from URL
-            JSONObject json = jParser.makeHttpRequest(RESTAURANTES_SEARCH, new ArrayList<Pair<String, String>>());
+            JSONObject json = jParser.makeHttpRequest(RESTAURANTS_SEARCH, new ArrayList<Pair<String, String>>());
 
             int success = -1;
             List<Restaurante> lista_restaurantes = new ArrayList<Restaurante>();
@@ -258,12 +277,19 @@ public class SearchFragment extends Fragment {
          * After completing background task update the ListView
          **/
         protected void onPostExecute(List<Restaurante> result) {
-            // seleccionamos el listView
-            ListView lv = (ListView) getActivity().findViewById(R.id.fSearchListViewSearch);
+///////////////////////////////
+// PROBAR ESTO SI FUNCIONA
+///////////////////////////////
+            if (result.size() == 0) {
+                Toast.makeText(getActivity(), "La consulta ha devuelto 0 resutlados!", Toast.LENGTH_LONG).show();
+            } else {
+                // seleccionamos el listView
+                ListView lv = (ListView) getActivity().findViewById(R.id.fSearchListViewSearch);
 
-            // cogemos los datos con el ListSearchAdapter y los mostramos
-            ListSearchAdapter customAdapter = new ListSearchAdapter(getActivity(), R.layout.fragment_search_item, result);
-            lv.setAdapter(customAdapter);
+                // cogemos los datos con el ListSearchAdapter y los mostramos
+                ListSearchAdapter customAdapter = new ListSearchAdapter(getActivity(), R.layout.fragment_search_item, result);
+                lv.setAdapter(customAdapter);
+            }
         }
     }
 
