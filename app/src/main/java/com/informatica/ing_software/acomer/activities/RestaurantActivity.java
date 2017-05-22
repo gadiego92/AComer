@@ -73,8 +73,8 @@ public class RestaurantActivity extends AppCompatActivity {
         TextView tipoCocinaTextView = (TextView) findViewById(R.id.aRestTextViewTipoCocina);
         TextView telefonoTextView = (TextView) findViewById(R.id.aRestTextViewTelefono);
         RatingBar valoracionRatingBar = (RatingBar) findViewById(R.id.aRestRatingBarValoracion);
-        valoracionRatingBar.setMax(3);
-        valoracionRatingBar.setNumStars(3);
+        //valoracionRatingBar.setMax(3);
+        //valoracionRatingBar.setNumStars(3);
 
         nombreTextView.setText(restaurante.getNombre());
         ciudadTextView.setText(restaurante.getCiudad());
