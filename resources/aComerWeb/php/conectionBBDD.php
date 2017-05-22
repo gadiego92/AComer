@@ -16,9 +16,9 @@ class conectionBBDD{
    //Conectamos a la bbdd
    function openConectionBBDD(){
       $server = 'localhost';
-      $username = 'android';
-      $password = '1234';
-      $database_name = 'a_comer_db';
+      $username = 'acomer';
+      $password = 'acomer';
+      $database_name = 'acomer';
       
       $this->conexion = new mysqli($server,$username,$password,$database_name);
 
@@ -38,12 +38,23 @@ class conectionBBDD{
 
    //Query obtener destinos 
    function getComentarios(){
-      $sql= "SELECT usuario_email, restaurante_id, opinion, fecha_opinion from opiniones";
+      $sql= "SELECT usuario_email, restaurante_id, opinion, fecha_opinion, revisar from opiniones WHERE revisar='S' ";
       $result = $this->conexion->query($sql);
       return $result;
    }
 
 
+  //Query obtener destinos 
+   function setValidacion($restaurante_id, $usuario_email,$revisar){
+      $sql= "UPDATE opiniones SET revisar='$revisar' WHERE restaurante_id='$restaurante_id' AND usuario_email='$usuario_email'";
+      $result = $this->conexion->query($sql);
+
+          if ($this->conexion->query($sql) === TRUE) {
+             echo "New record created successfully";
+         } else {
+             echo "Error: " . $sql . "<br>" . $this->conexion->error;
+         }
+   }
 
 }
 ?>

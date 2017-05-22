@@ -1,10 +1,6 @@
 $(document).ready( function() {
  	//Peticion de comentarios
 	$.get("../php/getComentarios.php", function(data) {
-		//console.log("data" + data);
-
-		//var select = document.getElementById("elecccionSelect"); //Div donde guardamos los destinos
-		
 		var comentarios = JSON.parse(data); //Datos obtenidos get
 		var hasta = comentarios.length;
 		var i = 0;
@@ -13,14 +9,7 @@ $(document).ready( function() {
 			var restaurante_id = comentarios.restaurante_id;
 			var opinion = comentarios.opinion;
 			var fecha_opinion = comentarios.fecha_opinion;
-/*
-			var opt = document.createElement('option'); //Tipo de html que queremos crear
-			opt.value = destino.ciudad; //Obtenemos la ciudad del objeto
-			//console.log("destino ciudad" + destino.ciudad);
-			opt.innerHTML = destino.ciudad; 
-			select.appendChild(opt); //Lo añadimos al DIV seleccionado */
-
-		
+			var revisar = comentarios.revisar;
 
   		row = $('<tr><td id="boton'+i+'"></td><td>'+usuario_email+'</td><td>'+restaurante_id+'</td><td>'+opinion+'</td><td>'+fecha_opinion+'</td></tr>'); //create row
    		$('#tab_logic').append(row);
@@ -29,7 +18,7 @@ $(document).ready( function() {
    		 	class: "botonValidar",
             type : 'button',
             id: 'id' + i,
-            name: i,
+            name: restaurante_id+"/"+usuario_email,
             value: "Validar",
         }).appendTo('#boton'+i+'');
    		 i++;
@@ -38,18 +27,32 @@ $(document).ready( function() {
 
 
 $( ".botonValidar" ).click(function() {
-  console.log("validando comentario");
+
+	var name = $( this ).attr("name");
+ 	var res = name.split("/");
+ 	var restaurante_id = res[0];
+ 	var usuario_email = res[1];
+ 	
+ 	    var formData = {
+            'restaurante_id' :  restaurante_id,
+            'usuario_email'    : usuario_email,
+        };
+
+       //Enviamos un post mediantes ajax con los datos formData que contieen todos los datos
+        $.ajax({
+            type        : 'POST', 
+            url         : '../php/setComentariosValidados.php', //archivo que procesa los datos 
+            data        : formData, 
+            dataType    : 'json', 
+                        encode          : true
+        })
+           var parentTag = $(this).parent().parent().remove();
+
+
  
 });
 
 });
-
-
-
-
-
-
-
 
 
 
