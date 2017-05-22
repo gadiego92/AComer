@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.util.Pair;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -149,6 +150,15 @@ public class SearchFragment extends Fragment {
 
                 // To avoid onItemClick event after onItemLongClick
                 return true;
+            }
+        });
+
+        // Create a listener for the search bar
+        SearchView searchBar = (SearchView) view.findViewById(R.id.fSearchSearchView);
+        searchBar.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(), "Bien", Toast.LENGTH_LONG).show();
             }
         });
 
