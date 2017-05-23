@@ -8,9 +8,6 @@
 // array for JSON response
 $response = array();
 
-$response["tipoBusqueda"] = $_POST['tipo_busqueda'];
-$response["bsuqueda"] = $_POST['busqueda'];
-
 if (isset($_POST['tipo_busqueda']) && !empty($_POST['tipo_busqueda'])) {
 
 	include('../android_connect/db_connect.php');	
