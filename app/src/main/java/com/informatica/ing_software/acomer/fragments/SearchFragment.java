@@ -9,12 +9,12 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.util.Pair;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.informatica.ing_software.acomer.R;
@@ -86,8 +86,8 @@ public class SearchFragment extends Fragment {
         if (getArguments() != null) {
             usuario_email = getArguments().getString(USUARIO_EMAIL);
 
-            // Get last 20 added Restaurants (0)
-            new GetRestaurants().execute("0", "");
+            // Get last 20 added Restaurants ("1")
+            new GetRestaurants().execute("1", "");
         }
     }
 
@@ -157,24 +157,30 @@ public class SearchFragment extends Fragment {
 
         // Create a listener for the search bar
         final SearchView searchBar = (SearchView) view.findViewById(R.id.fSearchSearchView);
-        searchBar.setOnSearchClickListener(new View.OnClickListener() {
+        searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public void onClick(View view) {
-///////////////////////////////
-// PROBAR ESTO SI FUNCIONA
-///////////////////////////////
-                Toast.makeText(getActivity(), "Bien", Toast.LENGTH_LONG).show();
+            public boolean onQueryTextSubmit(String s) {
+                if (s.trim().length() > 1) {
+                    // Leave the focus
+                    searchBar.clearFocus();
 
-                String query = searchBar.getQuery().toString().trim();
-
-                if (query.length() > 1) {
-                    // Get Restaurant Search (1)
-                    new GetRestaurants().execute("1", query);
+                    // Get Restaurant Search (2)
+                    new GetRestaurants().execute("2", s.trim());
                 } else {
                     Toast.makeText(getActivity(), "Búsqueda demasiado corta", Toast.LENGTH_LONG).show();
                 }
+
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
             }
         });
+
+        searchBar.setSubmitButtonEnabled(true);
+        searchBar.setIconifiedByDefault(false);
 
         // return inflate the layout for this fragment
         return view;
@@ -238,7 +244,7 @@ public class SearchFragment extends Fragment {
             params.add(new Pair<String, String>(BUSQUEDA, args[1]));
 
             // Getting JSON string from URL
-            JSONObject json = jParser.makeHttpRequest(RESTAURANTS_SEARCH, new ArrayList<Pair<String, String>>());
+            JSONObject json = jParser.makeHttpRequest(RESTAURANTS_SEARCH, params);
 
             int success = -1;
             List<Restaurante> lista_restaurantes = new ArrayList<Restaurante>();

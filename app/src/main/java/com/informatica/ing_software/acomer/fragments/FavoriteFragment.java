@@ -241,9 +241,8 @@ public class FavoriteFragment extends Fragment {
                         String cd = ((JSONObject) jsonArray.get(i)).getString("cd");                    // Ciudad
                         String tl = ((JSONObject) jsonArray.get(i)).getString("tl");                    // Telefono
                         String cn = ((JSONObject) jsonArray.get(i)).getString("cn");                    // Cocina
-                        String vl = ((JSONObject) jsonArray.get(i)).getString("vl");                    // Valoracion
 
-                        lista_restaurantes.add(new Restaurante(id, nm, cd, tl, cn, vl));
+                        lista_restaurantes.add(new Restaurante(id, nm, cd, tl, cn, ""));
                     }
                 }
 

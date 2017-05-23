@@ -26,7 +26,6 @@ CREATE TABLE Restaurantes (
 	pais VARCHAR(32) NOT NULL,
 	codigo_postal VARCHAR(5) NOT NULL,
 	tipo_cocina VARCHAR(16) NOT NULL,
-	valoracion FLOAT NOT NULL,
 	fecha_registro DATE NOT NULL,
 	usuario_email VARCHAR(64) NOT NULL,
 	PRIMARY KEY (id_restaurante),

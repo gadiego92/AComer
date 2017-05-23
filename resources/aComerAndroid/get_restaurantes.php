@@ -17,8 +17,7 @@ if (isset($_POST['restaurante_id']) && !empty($_POST['restaurante_id'])) {
 	
 	// get a restaurante by the ID
 	$result = mysqli_query($con, "SELECT id_restaurante, nombre,"
-		. " ciudad, provincia, telefono, tipo_cocina,"
-		. " valoracion"
+		. " ciudad, provincia, telefono, tipo_cocina"
 		. " FROM Restaurantes"
 		. "	WHERE id_restaurante='$id'");
  

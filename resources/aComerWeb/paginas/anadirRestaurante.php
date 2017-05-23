@@ -34,15 +34,14 @@
 						$pais = $_POST['pais'];
 						$codigo_postal = $_POST['codigo_postal'];
 						$tipo_cocina = $_POST['tipo_cocina'];
-						$valoracion = 5;
 						$fecha_registro = date("Y-m-d");
 						$usuario_email = $_SESSION['email'];
 						
 						// mysql inserting a new row
 						$result = mysqli_query($con, "INSERT INTO Restaurantes (nombre, telefono, direccion, ciudad, provincia, pais,"
-							. " codigo_postal, tipo_cocina, valoracion, fecha_registro, usuario_email)"
+							. " codigo_postal, tipo_cocina, fecha_registro, usuario_email)"
 							. " VALUES ('$nombre', '$telefono', '$direccion', '$ciudad', '$provincia', '$pais',"
-							. " '$codigo_postal', '$tipo_cocina', '$valoracion', '$fecha_registro', '$usuario_email')");
+							. " '$codigo_postal', '$tipo_cocina', '$fecha_registro', '$usuario_email')");
 						
 						// check if row inserted or not
 						if ($result) {

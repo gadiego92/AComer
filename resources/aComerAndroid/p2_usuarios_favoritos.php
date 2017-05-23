@@ -19,8 +19,7 @@ if (isset($_POST['usuario_email']) && !empty($_POST['usuario_email'])) {
 	
 	//$result = mysqli_query($con, "SELECT Favoritos.restaurante_id, Restaurantes.nombre"
 	$result = mysqli_query($con, "SELECT Restaurantes.id_restaurante, Restaurantes.nombre,"
-		. " Restaurantes.ciudad, Restaurantes.provincia, Restaurantes.telefono, Restaurantes.tipo_cocina,"
-		. " Restaurantes.valoracion"
+		. " Restaurantes.ciudad, Restaurantes.provincia, Restaurantes.telefono, Restaurantes.tipo_cocina"
 		. " FROM Favoritos, Restaurantes"
 		. "	WHERE Favoritos.restaurante_id = Restaurantes.id_restaurante"
 		. " AND Favoritos.usuario_email='$email'"
@@ -39,7 +38,6 @@ if (isset($_POST['usuario_email']) && !empty($_POST['usuario_email'])) {
 			$restaurante['cd'] = $row['ciudad'] . ' (' . $row['provincia'] . ')';
 			$restaurante['tl'] = $row['telefono'];
 			$restaurante['cn'] = $row['tipo_cocina'];
-			$restaurante['vl'] = $row['valoracion'];
 			
 			// push cada restaurante en el array final
 			array_push($response['restaurantes'], $restaurante);

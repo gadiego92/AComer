@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.informatica.ing_software.acomer.fragments.SearchFragment">
+    tools:context="com.informatica.ing_software.acomer.fragments.SearchFragment"
+    android:focusableInTouchMode="true" >
 
     <SearchView
         android:id="@+id/fSearchSearchView"

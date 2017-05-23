@@ -8,7 +8,10 @@
 // array for JSON response
 $response = array();
 
-if (isset($_POST['tipo_busqueda']) && !empty($_POST['tipo_busqueda']) {
+$response["tipoBusqueda"] = $_POST['tipo_busqueda'];
+$response["bsuqueda"] = $_POST['busqueda'];
+
+if (isset($_POST['tipo_busqueda']) && !empty($_POST['tipo_busqueda'])) {
 
 	include('../android_connect/db_connect.php');	
 	connect($con);
@@ -18,7 +21,7 @@ if (isset($_POST['tipo_busqueda']) && !empty($_POST['tipo_busqueda']) {
 	$tipo_busqueda = $_POST['tipo_busqueda'];
 	$busqueda = $_POST['busqueda'];
 	
-	if ($tipo_busqueda == 1 && isset($_POST['busqueda']) && !empty($_POST['busqueda']) {
+	if ($tipo_busqueda == 2 && isset($_POST['busqueda']) && !empty($_POST['busqueda'])) {
 	
 		$sqlRestaurantes = "SELECT id_restaurante, nombre, ciudad, provincia, telefono, tipo_cocina"
 		. " FROM Restaurantes"
