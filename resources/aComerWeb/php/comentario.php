@@ -1,7 +1,7 @@
 <?php
 //Objeto 
-	class Comentario{
-
+	class Comentario
+	{
 		public $usuario_email;
 		public $restaurante_id;
 		public $opinion;

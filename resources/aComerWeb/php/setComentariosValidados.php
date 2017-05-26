@@ -1,7 +1,5 @@
 <?php
 // process.php
-
-
 include 'conectionBBDD.php';
 
 //Creamos un acceso a la BBDD
@@ -15,3 +13,4 @@ $instancia -> openConectionBBDD();
 
    $instancia -> setValidacion($restaurante_id,$usuario_email,$revisar);
 
+?>

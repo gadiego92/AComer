@@ -2,7 +2,7 @@
     include 'conectionBBDD.php';
     include 'comentario.php';
 
-//acceso a la BBDD
+	//acceso a la BBDD
     $instancia = conectionBBDD::getInstance();
     $instancia -> openConectionBBDD();
 
